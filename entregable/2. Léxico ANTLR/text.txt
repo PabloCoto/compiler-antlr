@@ -1,0 +1,10 @@
+/* Ejemplo */
+
+int i;
+float f;
+
+read i;     // Leer del teclado
+f = 2 + i - 4;
+write f;
+
+/* Final */

@@ -1,0 +1,13 @@
+DATA
+	float precio;
+	int ancho;
+	int alto;
+	float total;
+
+CODE
+	precio = 9.95;
+	total = (precio - 3.0) * 1.18;
+	print total;
+
+	ancho = 10; alto = 20;
+	print 0 - ancho * alto / 2;

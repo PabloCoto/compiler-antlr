@@ -1,0 +1,28 @@
+programa: 'DATA' variables 'CODE' sentencias 
+    
+//--------
+variables:		    		
+    | variables variable    
+    
+variable:  tipo 'IDENT' ';'	
+    
+tipo: 'INT'		
+    | 'REAL' 
+	
+//--------
+sentencias:		    		
+    | sentencias sentencia  
+
+sentencia: 'PRINT' expr ';'	
+	| expr '=' expr ';'	
+
+//--------
+expr: expr '+' expr	
+    | expr '-' expr
+    | expr '*' expr	
+    | expr '/' expr	
+    | '(' expr ')'  
+    | 'IDENT'	
+    | 'LITERALINT'
+    | 'LITERALREAL'	
+

@@ -3,43 +3,28 @@ grammar Grammar
 import Lexicon
 	;
 
-start: first* EOF;
+start: (defVariable|defStruct|defFuncion|sentencia)* EOF;
 
-first: defVariable
-	| arrayDef
-	| structDef
-	| defFuncion
-	;
-
-defVariable: 'var' IDENT ':' tiposCompuestos ';'
+defVariable: 'var' IDENT ':' tipo ';'
 	;
 	
-arrayDef: 'var' IDENT ':' ('[' INT_CONSTANT ']')+ tiposCompuestos ';'
-	;
-	
-structDef : 'struct' IDENT '{' cuerpoStruct+ '}' ';'
-	;
-	
-cuerpoStruct : IDENT ':' tiposCompuestos ';'
-	| IDENT ':' ('[' INT_CONSTANT ']')+ tiposCompuestos ';'
+defStruct: 'struct' IDENT '{' (IDENT ':' tipo ';')* '}' ';'
 	;
 
-tiposSimples: 'int'
+tipo: 'int'
 	| 'float'
 	| 'char'
-	;
-	
-tiposCompuestos: tiposSimples 
 	| IDENT
+	| '[' INT_CONSTANT ']' tipo
 	;
 
-defFuncion: IDENT '(' (paramFuncion (',' paramFuncion)*)? ')' (':' tiposSimples)? '{' cuerpoFuncion '}'
+defFuncion: IDENT '(' (paramFuncion (',' paramFuncion)*)? ')' (':' tipo)? '{' cuerpoFuncion '}'
 	;
 	
-paramFuncion: IDENT ':' tiposSimples
+paramFuncion: IDENT ':' tipo
 	;
 	
-cuerpoFuncion: (defVariable|arrayDef|structDef)* sentencia*
+cuerpoFuncion: definiciones* sentencia*
 	;
 	
 sentencia: 'return' expresion? ';'
@@ -60,7 +45,7 @@ expresion: IDENT
 	| '(' expresion ')'
 	| expresion '[' expresion ']'
 	| expresion '.' expresion
-	| 'cast' '<' tiposSimples '>' expresion
+	| 'cast' '<' tipo '>' '(' expresion ')'
 	| '!' expresion 
 	|  expresion '*' expresion  
 	|  expresion '/' expresion  
@@ -81,6 +66,5 @@ expresion: IDENT
 bucleWhile: 'while' '(' expresion ')' '{' sentencia* '}'
 	;
 	
-bucleIf: 'if' '(' expresion+ ')' '{' sentencia* '}' ('else' '{' sentencia* '}')?
+bucleIf: 'if' '(' expresion ')' '{' sentencia* '}' ('else' '{' sentencia* '}')?
 	;
-

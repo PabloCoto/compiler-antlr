@@ -6,9 +6,11 @@
 
 */
 
+
 potencia(base:float, exponente:int):float {
 	var total:float;
 
+	
 	if (exponente == 0) {
 		total = 1.0;
 	} else {

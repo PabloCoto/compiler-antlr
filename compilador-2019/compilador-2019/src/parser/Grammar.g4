@@ -24,7 +24,7 @@ defFuncion: IDENT '(' (paramFuncion (',' paramFuncion)*)? ')' (':' tipo)? '{' cu
 paramFuncion: IDENT ':' tipo
 	;
 	
-cuerpoFuncion: definiciones* sentencia*
+cuerpoFuncion: (defVariable|defStruct)* sentencia*
 	;
 	
 sentencia: 'return' expresion? ';'

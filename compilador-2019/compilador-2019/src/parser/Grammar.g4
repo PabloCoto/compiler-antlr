@@ -3,19 +3,28 @@ grammar Grammar
 import Lexicon
 	;
 
-start: (defVariable|defStruct|defFuncion|sentencia)* EOF;
+start: (definicion)* EOF;
+
+definicion :defVariable|defStruct|defFuncion
+	;
 
 defVariable: 'var' IDENT ':' tipo ';'
 	;
 	
-defStruct: 'struct' IDENT '{' (IDENT ':' tipo ';')* '}' ';'
+defStruct: 'struct' IDENT '{' cuerpoStruct* '}' ';'
+	;
+	
+cuerpoStruct : (IDENT ':' tipo ';')
 	;
 
 tipo: 'int'
 	| 'float'
 	| 'char'
 	| IDENT
-	| '[' INT_CONSTANT ']' tipo
+	| tipoArray
+	;
+
+tipoArray: '[' INT_CONSTANT ']' tipo
 	;
 
 defFuncion: IDENT '(' (paramFuncion (',' paramFuncion)*)? ')' (':' tipo)? '{' cuerpoFuncion '}'

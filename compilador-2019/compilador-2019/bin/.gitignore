@@ -1,2 +1,4 @@
-/main/
+/ast/
+/visitor/
 /parser/
+/main/

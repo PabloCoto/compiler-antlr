@@ -7,15 +7,15 @@ programa -> definicion*;
 defVariable:definicion -> ident:string tipo;
 defStruct:definicion -> ident:string cuerpoStruct*;
 cuerpoStruct -> ident:string tipo;
-defFuncion:definicion -> ident:string parametrosFuncion:param* tipo cuerpoFuncion;
+defFuncion:definicion -> ident:string parametrosFuncion:param* tipo definiciones:defVariable* sentencias:sentencia*;
 param -> ident:string tipo;
-cuerpoFuncion -> definiciones:defVariable* sentencias:sentencia*;
 
 tipoEntero:tipo -> ;
 tipoReal:tipo -> ;
 tipoChar:tipo -> ;
 tipoArray:tipo -> dimension:string tipo;
 tipoStruct:tipo -> ident:string;
+tipoVoid:tipo -> ;
 
 return:sentencia -> expresion;
 asignacion:sentencia -> izq:expresion der:expresion;

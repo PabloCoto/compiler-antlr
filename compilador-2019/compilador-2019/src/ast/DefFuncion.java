@@ -9,31 +9,33 @@ import visitor.*;
 
 import org.antlr.v4.runtime.*;
 
-//	defFuncion:definicion -> ident:String  parametrosFuncion:param*  tipo:tipo  cuerpofuncion:cuerpoFuncion
+//	defFuncion:definicion -> ident:String  parametrosFuncion:param*  tipo:tipo  definiciones:defVariable*  sentencias:sentencia*
 
 public class DefFuncion extends AbstractDefinicion {
 
-	public DefFuncion(String ident, List<Param> parametrosFuncion, Tipo tipo, CuerpoFuncion cuerpofuncion) {
+	public DefFuncion(String ident, List<Param> parametrosFuncion, Tipo tipo, List<DefVariable> definiciones, List<Sentencia> sentencias) {
 		this.ident = ident;
 		this.parametrosFuncion = parametrosFuncion;
 		this.tipo = tipo;
-		this.cuerpofuncion = cuerpofuncion;
+		this.definiciones = definiciones;
+		this.sentencias = sentencias;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(parametrosFuncion, tipo, cuerpofuncion);
+       setPositions(parametrosFuncion, tipo, definiciones, sentencias);
 	}
 
 	@SuppressWarnings("unchecked")
-	public DefFuncion(Object ident, Object parametrosFuncion, Object tipo, Object cuerpofuncion) {
+	public DefFuncion(Object ident, Object parametrosFuncion, Object tipo, Object definiciones, Object sentencias) {
 		this.ident = (ident instanceof Token) ? ((Token)ident).getText() : (String) ident;
 		this.parametrosFuncion = (List<Param>) parametrosFuncion;
 		this.tipo = (Tipo) ((tipo instanceof ParserRuleContext) ? getAST(tipo) : tipo);
-		this.cuerpofuncion = (CuerpoFuncion) ((cuerpofuncion instanceof ParserRuleContext) ? getAST(cuerpofuncion) : cuerpofuncion);
+		this.definiciones = (List<DefVariable>) definiciones;
+		this.sentencias = (List<Sentencia>) sentencias;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
-       setPositions(ident, parametrosFuncion, tipo, cuerpofuncion);
+       setPositions(ident, parametrosFuncion, tipo, definiciones, sentencias);
 	}
 
 	public String getIdent() {
@@ -57,11 +59,18 @@ public class DefFuncion extends AbstractDefinicion {
 		this.tipo = tipo;
 	}
 
-	public CuerpoFuncion getCuerpofuncion() {
-		return cuerpofuncion;
+	public List<DefVariable> getDefiniciones() {
+		return definiciones;
 	}
-	public void setCuerpofuncion(CuerpoFuncion cuerpofuncion) {
-		this.cuerpofuncion = cuerpofuncion;
+	public void setDefiniciones(List<DefVariable> definiciones) {
+		this.definiciones = definiciones;
+	}
+
+	public List<Sentencia> getSentencias() {
+		return sentencias;
+	}
+	public void setSentencias(List<Sentencia> sentencias) {
+		this.sentencias = sentencias;
 	}
 
 	@Override
@@ -72,9 +81,10 @@ public class DefFuncion extends AbstractDefinicion {
 	private String ident;
 	private List<Param> parametrosFuncion;
 	private Tipo tipo;
-	private CuerpoFuncion cuerpofuncion;
+	private List<DefVariable> definiciones;
+	private List<Sentencia> sentencias;
 
 	public String toString() {
-       return "{ident:" + getIdent() + ", parametrosFuncion:" + getParametrosFuncion() + ", tipo:" + getTipo() + ", cuerpofuncion:" + getCuerpofuncion() + "}";
+       return "{ident:" + getIdent() + ", parametrosFuncion:" + getParametrosFuncion() + ", tipo:" + getTipo() + ", definiciones:" + getDefiniciones() + ", sentencias:" + getSentencias() + "}";
    }
 }

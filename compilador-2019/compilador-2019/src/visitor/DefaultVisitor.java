@@ -40,13 +40,13 @@ public class DefaultVisitor implements Visitor {
 		return null;
 	}
 
-	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  CuerpoFuncion cuerpofuncion; }
+	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
 		visitChildren(node.getParametrosFuncion(), param);
 		if (node.getTipo() != null)
 			node.getTipo().accept(this, param);
-		if (node.getCuerpofuncion() != null)
-			node.getCuerpofuncion().accept(this, param);
+		visitChildren(node.getDefiniciones(), param);
+		visitChildren(node.getSentencias(), param);
 		return null;
 	}
 
@@ -54,13 +54,6 @@ public class DefaultVisitor implements Visitor {
 	public Object visit(Param node, Object param) {
 		if (node.getTipo() != null)
 			node.getTipo().accept(this, param);
-		return null;
-	}
-
-	//	class CuerpoFuncion { List<DefVariable> definiciones;  List<Sentencia> sentencias; }
-	public Object visit(CuerpoFuncion node, Object param) {
-		visitChildren(node.getDefiniciones(), param);
-		visitChildren(node.getSentencias(), param);
 		return null;
 	}
 
@@ -88,6 +81,11 @@ public class DefaultVisitor implements Visitor {
 
 	//	class TipoStruct { String ident; }
 	public Object visit(TipoStruct node, Object param) {
+		return null;
+	}
+
+	//	class TipoVoid {  }
+	public Object visit(TipoVoid node, Object param) {
 		return null;
 	}
 

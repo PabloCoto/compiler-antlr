@@ -137,7 +137,7 @@ public class ASTPrinter extends DefaultVisitor {
 		return null;
 	}
 
-	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  CuerpoFuncion cuerpofuncion; }
+	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
 		int indent = ((Integer)param).intValue();
 
@@ -146,7 +146,8 @@ public class ASTPrinter extends DefaultVisitor {
 		print(indent + 1, "ident", "String", node.getIdent());
 		visit(indent + 1, "parametrosFuncion", "List<Param>",node.getParametrosFuncion());
 		visit(indent + 1, "tipo", "Tipo",node.getTipo());
-		visit(indent + 1, "cuerpofuncion", "CuerpoFuncion",node.getCuerpofuncion());
+		visit(indent + 1, "definiciones", "List<DefVariable>",node.getDefiniciones());
+		visit(indent + 1, "sentencias", "List<Sentencia>",node.getSentencias());
 		return null;
 	}
 
@@ -158,17 +159,6 @@ public class ASTPrinter extends DefaultVisitor {
 
 		print(indent + 1, "ident", "String", node.getIdent());
 		visit(indent + 1, "tipo", "Tipo",node.getTipo());
-		return null;
-	}
-
-	//	class CuerpoFuncion { List<DefVariable> definiciones;  List<Sentencia> sentencias; }
-	public Object visit(CuerpoFuncion node, Object param) {
-		int indent = ((Integer)param).intValue();
-
-		printName(indent, "CuerpoFuncion", node, false);
-
-		visit(indent + 1, "definiciones", "List<DefVariable>",node.getDefiniciones());
-		visit(indent + 1, "sentencias", "List<Sentencia>",node.getSentencias());
 		return null;
 	}
 
@@ -215,6 +205,15 @@ public class ASTPrinter extends DefaultVisitor {
 		int indent = ((Integer)param).intValue();
 
 		printCompact(indent, "TipoStruct", node, "ident", node.getIdent());
+		return null;
+	}
+
+	//	class TipoVoid {  }
+	public Object visit(TipoVoid node, Object param) {
+		int indent = ((Integer)param).intValue();
+
+		printName(indent, "TipoVoid", node, true);
+
 		return null;
 	}
 

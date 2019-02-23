@@ -84,7 +84,7 @@ public class <nombre clase> extends DefaultVisitor {
 		return null;
 	}
 
-	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  CuerpoFuncion cuerpofuncion; }
+	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
 
 		// super.visit(node, param);
@@ -96,8 +96,13 @@ public class <nombre clase> extends DefaultVisitor {
 		if (node.getTipo() != null)
 			node.getTipo().accept(this, param);
 
-		if (node.getCuerpofuncion() != null)
-			node.getCuerpofuncion().accept(this, param);
+		if (node.getDefiniciones() != null)
+			for (DefVariable child : node.getDefiniciones())
+				child.accept(this, param);
+
+		if (node.getSentencias() != null)
+			for (Sentencia child : node.getSentencias())
+				child.accept(this, param);
 
 		return null;
 	}
@@ -109,22 +114,6 @@ public class <nombre clase> extends DefaultVisitor {
 
 		if (node.getTipo() != null)
 			node.getTipo().accept(this, param);
-
-		return null;
-	}
-
-	//	class CuerpoFuncion { List<DefVariable> definiciones;  List<Sentencia> sentencias; }
-	public Object visit(CuerpoFuncion node, Object param) {
-
-		// super.visit(node, param);
-
-		if (node.getDefiniciones() != null)
-			for (DefVariable child : node.getDefiniciones())
-				child.accept(this, param);
-
-		if (node.getSentencias() != null)
-			for (Sentencia child : node.getSentencias())
-				child.accept(this, param);
 
 		return null;
 	}
@@ -157,6 +146,11 @@ public class <nombre clase> extends DefaultVisitor {
 
 	//	class TipoStruct { String ident; }
 	public Object visit(TipoStruct node, Object param) {
+		return null;
+	}
+
+	//	class TipoVoid {  }
+	public Object visit(TipoVoid node, Object param) {
 		return null;
 	}
 

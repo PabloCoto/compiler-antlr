@@ -27,10 +27,10 @@ potencia(base:float, exponente:int):float {
 	return total;
 }
 
+
 	
 letraHipoteca(capital:float, anos:int, interes:float):float {
 	var mensual:float;
-
 	mensual = interes / 12.0;
 	return capital * mensual / (100.0 * (1.0 - potencia(1.0 + mensual/100.0, 0 - anos * 12)));
 }

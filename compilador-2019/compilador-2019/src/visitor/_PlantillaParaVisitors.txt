@@ -216,8 +216,8 @@ public class <nombre clase> extends DefaultVisitor {
 		return null;
 	}
 
-	//	class BucleIf { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
-	public Object visit(BucleIf node, Object param) {
+	//	class SentenciaCondicional { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
+	public Object visit(SentenciaCondicional node, Object param) {
 
 		// super.visit(node, param);
 

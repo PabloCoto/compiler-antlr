@@ -9,11 +9,11 @@ import visitor.*;
 
 import org.antlr.v4.runtime.*;
 
-//	bucleIf:sentencia -> condicion:expresion  cuerpoIf:sentencia*  cuerpoElse:sentencia*
+//	sentenciaCondicional:sentencia -> condicion:expresion  cuerpoIf:sentencia*  cuerpoElse:sentencia*
 
-public class BucleIf extends AbstractSentencia {
+public class SentenciaCondicional extends AbstractSentencia {
 
-	public BucleIf(Expresion condicion, List<Sentencia> cuerpoIf, List<Sentencia> cuerpoElse) {
+	public SentenciaCondicional(Expresion condicion, List<Sentencia> cuerpoIf, List<Sentencia> cuerpoElse) {
 		this.condicion = condicion;
 		this.cuerpoIf = cuerpoIf;
 		this.cuerpoElse = cuerpoElse;
@@ -24,7 +24,7 @@ public class BucleIf extends AbstractSentencia {
 	}
 
 	@SuppressWarnings("unchecked")
-	public BucleIf(Object condicion, Object cuerpoIf, Object cuerpoElse) {
+	public SentenciaCondicional(Object condicion, Object cuerpoIf, Object cuerpoElse) {
 		this.condicion = (Expresion) ((condicion instanceof ParserRuleContext) ? getAST(condicion) : condicion);
 		this.cuerpoIf = (List<Sentencia>) cuerpoIf;
 		this.cuerpoElse = (List<Sentencia>) cuerpoElse;

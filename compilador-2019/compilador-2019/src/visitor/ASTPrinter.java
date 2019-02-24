@@ -269,11 +269,11 @@ public class ASTPrinter extends DefaultVisitor {
 		return null;
 	}
 
-	//	class BucleIf { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
-	public Object visit(BucleIf node, Object param) {
+	//	class SentenciaCondicional { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
+	public Object visit(SentenciaCondicional node, Object param) {
 		int indent = ((Integer)param).intValue();
 
-		printName(indent, "BucleIf", node, false);
+		printName(indent, "SentenciaCondicional", node, false);
 
 		visit(indent + 1, "condicion", "Expresion",node.getCondicion());
 		visit(indent + 1, "cuerpoIf", "List<Sentencia>",node.getCuerpoIf());

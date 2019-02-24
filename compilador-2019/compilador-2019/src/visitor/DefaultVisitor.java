@@ -127,8 +127,8 @@ public class DefaultVisitor implements Visitor {
 		return null;
 	}
 
-	//	class BucleIf { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
-	public Object visit(BucleIf node, Object param) {
+	//	class SentenciaCondicional { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
+	public Object visit(SentenciaCondicional node, Object param) {
 		if (node.getCondicion() != null)
 			node.getCondicion().accept(this, param);
 		visitChildren(node.getCuerpoIf(), param);

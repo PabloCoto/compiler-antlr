@@ -24,7 +24,7 @@ public interface Visitor {
 	public Object visit(Print node, Object param);
 	public Object visit(Read node, Object param);
 	public Object visit(BucleWhile node, Object param);
-	public Object visit(BucleIf node, Object param);
+	public Object visit(SentenciaCondicional node, Object param);
 	public Object visit(InvocacionFuncion node, Object param);
 	public Object visit(AccesoStruct node, Object param);
 	public Object visit(AccesoArray node, Object param);

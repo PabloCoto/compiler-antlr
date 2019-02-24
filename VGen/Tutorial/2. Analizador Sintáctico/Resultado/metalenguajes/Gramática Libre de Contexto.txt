@@ -1,0 +1,39 @@
+// En BNF
+start: 'DATA' variables 'CODE' sentences;
+
+variables:	| variables variable;
+variable:	tipo IDENT ';';
+
+tipo: 'float' | 'int';
+
+sentences:	| sentences sentence;
+sentence:	'print' expr ';' | expr '=' expr ';';
+
+expr
+	: expr ('+' | '-') expr
+	| expr ('*' | '/') expr
+	| '(' expr ')'
+	| IDENT
+	| INT_CONSTANT
+	| REAL_CONSTANT
+	;
+
+	
+// En EBNF
+
+start: 'DATA' variable* 'CODE' sentence*;
+
+variable: tipo IDENT ';';
+
+tipo: 'float' | 'int';
+
+sentence: 'print' expr ';' | expr '=' expr ';';
+
+expr
+	: expr ('+' | '-') expr
+	| expr ('*' | '/') expr
+	| '(' expr ')'
+	| IDENT
+	| INT_CONSTANT
+	| REAL_CONSTANT
+	;

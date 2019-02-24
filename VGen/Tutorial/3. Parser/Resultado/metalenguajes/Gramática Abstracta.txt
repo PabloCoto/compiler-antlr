@@ -1,0 +1,18 @@
+CATEGORIES
+expression, sentence, type
+
+NODES
+program -> definitions:varDefinition* sentences:sentence*;
+
+varDefinition -> type name:string;
+
+intType:type -> ;
+realType:type -> ;
+
+print:sentence -> expression;
+assignment:sentence -> left:expression right:expression;
+
+arithmeticExpression:expression -> left:expression operator:string right:expression;
+variable:expression -> name:string;
+intConstant:expression -> value:string;
+realConstant:expression -> value:string;

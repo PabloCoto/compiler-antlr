@@ -1,0 +1,175 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <link rel="stylesheet" type="text/css" href="chrome-extension://ckkdlimhmcjmikdlpkmbgfkaikojcbjk/themes/github.css" id="_theme">
+    <div id="_html" class="markdown-body">
+        <h1 id="acceso-a-atributos-en-las-acciones-de-antlr"><a class="anchor" name="acceso-a-atributos-en-las-acciones-de-antlr" href="#acceso-a-atributos-en-las-acciones-de-antlr"><span class="octicon octicon-link"></span></a>Acceso a Atributos en las Acciones de ANTLR</h1>
+        <p>Creado por <em>Raúl Izquierdo Castanedo</em> para la asignatura de <em>Diseño de Lenguajes de Programación</em> de la <em>Universidad de Oviedo</em>.</p>
+        <ul>
+            <li><a href="#acceso-a-atributos-en-las-acciones-de-antlr">Acceso a Atributos en las Acciones de ANTLR</a>
+                <ul>
+                    <li><a href="#el-objeto-contexto-de-una-regla">El Objeto Contexto de una Regla</a></li>
+                    <li><a href="#acceso-a-atributos-de-la-propia-regla">Acceso a Atributos de la propia Regla</a></li>
+                    <li><a href="#acceso-a-los-atributos-de-los-s%C3%ADmbolos-en-el-consecuente-de-la-regla">Acceso a los Atributos de los Símbolos en el Consecuente de la Regla</a>
+                        <ul>
+                            <li><a href="#acceso-a-atributos-de-s%C3%ADmbolos-terminales">Acceso a Atributos de Símbolos Terminales</a>
+                                <ul>
+                                    <li><a href="#terminales-definidos">Terminales Definidos</a></li>
+                                    <li><a href="#terminales-an%C3%B3nimos">Terminales Anónimos</a></li>
+                                    <li><a href="#terminales-opcionales">Terminales Opcionales</a></li>
+                                    <li><a href="#terminales-repetidos-en-la-regla">Terminales Repetidos en la Regla</a>
+                                        <ul>
+                                            <li><a href="#opci%C3%B3n-1-sub%C3%ADndices">Opción 1. Subíndices</a></li>
+                                            <li><a href="#opci%C3%B3n-2-etiquetas">Opción 2. Etiquetas</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#acceso-a-atributos-de-s%C3%ADmbolos-no-terminales">Acceso a Atributos de Símbolos No Terminales</a>
+                                <ul>
+                                    <li><a href="#no-terminales-opcionales">No-Terminales Opcionales</a></li>
+                                    <li><a href="#no-terminales-repetidos-en-la-regla">No-Terminales Repetidos en la Regla</a>
+                                        <ul>
+                                            <li><a href="#opci%C3%B3n-1-acceso-con-sub%C3%ADndices">Opción 1. Acceso con Subíndices</a></li>
+                                            <li><a href="#opci%C3%B3n-2-acceso-con-etiquetas">Opción 2. Acceso con Etiquetas</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#creaci%C3%B3n-de-listas-java-en-antlr">Creación de Listas Java en ANTLR</a></li>
+                </ul>
+            </li>
+        </ul>
+        <h2 id="el-objeto-contexto-de-una-regla"><a class="anchor" name="el-objeto-contexto-de-una-regla" href="#el-objeto-contexto-de-una-regla"><span class="octicon octicon-link"></span></a>El Objeto Contexto de una Regla</h2>
+        <p>Por cada regla <em>rule</em>, ANTLR crea:</p>
+        <ol>
+            <li>Una clase de nombre <em>ruleContext</em>. Este objeto, denominado el <strong>contexto</strong>, será el que se utilice para guardar toda la información necesaria durante la ejecución de la regla y será también el que, al acabar la misma, se devuelva como valor de retorno</li>
+            <li>Un método en el Parser de nombre <em>rule()</em> que devuelve un objeto de la clase anterior.</li>
+        </ol>
+        <p>Por ejemplo, para el no-terminal <em>expr</em></p>
+        <pre class=" language-antlr"><code class=" language-antlr">expr: ... ;</code></pre>
+        <p>se crea lo siguiente:</p>
+        <pre class=" language-java"><code class=" language-java">
+<span class="token keyword">class</span> <span class="token class-name">ExprContext</span> <span class="token keyword">extends</span> <span class="token class-name">ParserRuleContext</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">GrammarParser</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> ExprContext <span class="token function">expr</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+        ExprContext ctx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ExprContext</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+        <span class="token keyword">return</span> ctx<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code></pre>
+        <p>El contexto contiene (entre otras cosas):</p>
+        <ul>
+            <li>El atributo donde se dejará el valor de retorno.</li>
+            <li>Las variables locales de las reglas.</li>
+            <li>Los objetos asociados a todos los símbolos del consecuente (parte derecha) de la regla: sus Tokens, si son terminales, o los contextos que a su vez éstos devuelvan, si son no-terminales.</li>
+        </ul>
+        <p>Por ejemplo, una regla como la siguiente:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a returns[String val] locals[int cont, float f]
+    : IDENT b;</code></pre>
+        <p>Generaría (simplificando) un contexto llamado <em>AContext</em>:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">class AContext extends ParserRuleContext {
+    public String val;      // Retorno
+    public int cont;        // Local 1
+    public float f;         // Local 2
+    public Token IDENT;     // Hijo 1
+    public BContext b;      // Hijo 2
+}</code></pre>
+        <h2 id="acceso-a-atributos-de-la-propia-regla"><a class="anchor" name="acceso-a-atributos-de-la-propia-regla" href="#acceso-a-atributos-de-la-propia-regla"><span class="octicon octicon-link"></span></a>Acceso a Atributos de la propia Regla</h2>
+        <p>Para acceder a los atributos del contexto actual, basta con poner directamente <em>$atributo</em>:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a returns[String val] locals[int cont, float f]
+    : IDENT b { $val = "adios"; $cont = 5; }
+    ;</code></pre>
+        <p>Si se quiere acceder al objeto <em>contexto</em> completo, hay que poner <em>$ctx</em>.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a returns[String val] locals[int cont, float f]
+    : IDENT b { System.out.println($ctx); }
+    ;</code></pre>
+        <p>De hecho, cuando se accede a los atributos, ANTLR internamente está poniendo <em>ctx</em> antes de cada uno:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a returns[String val] locals[int cont, float f]
+    : IDENT b { $ctx.val = "adios"; $ctx.cont = 5; }
+    ;</code></pre>
+        <h2 id="acceso-a-los-atributos-de-los-s-mbolos-en-el-consecuente-de-la-regla"><a class="anchor" name="acceso-a-los-atributos-de-los-s-mbolos-en-el-consecuente-de-la-regla" href="#acceso-a-los-atributos-de-los-s-mbolos-en-el-consecuente-de-la-regla"><span class="octicon octicon-link"></span></a>Acceso a los Atributos de los Símbolos en el Consecuente de la Regla</h2>
+        <p>En vez de acceder a los atributos de la propia regla, ahora se tratará cómo acceder a los atributos de los símbolos que están en la parte derecha de la regla (los símbolos <em>hijos</em> de la regla).</p>
+        <p>La forma de acceder (y el valor obtenido), depende de que el símbolo a consultar sea terminal o no-terminal.</p>
+        <h3 id="acceso-a-atributos-de-s-mbolos-terminales"><a class="anchor" name="acceso-a-atributos-de-s-mbolos-terminales" href="#acceso-a-atributos-de-s-mbolos-terminales"><span class="octicon octicon-link"></span></a>Acceso a Atributos de Símbolos Terminales</h3>
+        <h4 id="terminales-definidos"><a class="anchor" name="terminales-definidos" href="#terminales-definidos"><span class="octicon octicon-link"></span></a>Terminales Definidos</h4>
+        <pre class=" language-antlr"><code class=" language-antlr">a: IDENT { System.out.println($IDENT); }</code></pre>
+        <p>La notación <em>$símbolo</em> devuelve un objeto la clase Token (y, por tanto, están disponibles todos los métodos de esta clase).</p>
+        <p>Poner <em>$símbolo.text</em> es un atajo de <em>$símbolo.getText()</em></p>
+        <h4 id="terminales-an-nimos"><a class="anchor" name="terminales-an-nimos" href="#terminales-an-nimos"><span class="octicon octicon-link"></span></a>Terminales Anónimos</h4>
+        <p>Para acceder a terminales anónimos, hay que usar etiquetas:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: tk='print' { System.out.println($tk.text); }</code></pre>
+        <h4 id="terminales-opcionales"><a class="anchor" name="terminales-opcionales" href="#terminales-opcionales"><span class="octicon octicon-link"></span></a>Terminales Opcionales</h4>
+        <p>Si el token no aparece en la entrada, al acceder a él se obtendrá null.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: INT_CONSTANT IDENT? { System.out.println($IDENT); }    // $IDENT == null si no está</code></pre>
+        <h4 id="terminales-repetidos-en-la-regla"><a class="anchor" name="terminales-repetidos-en-la-regla" href="#terminales-repetidos-en-la-regla"><span class="octicon octicon-link"></span></a>Terminales Repetidos en la Regla</h4>
+        <p>Si hay varios terminales con el mismo nombre, si se pone dicho nombre sólo se accede al último de ellos.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: IDENT IDENT { System.out.println($IDENT); } // El segundo</code></pre>
+        <p>Para acceder a cualquier otro token, hay dos opciones: subíndices y etiquetas.</p>
+        <h5 id="opci-n-1-sub-ndices"><a class="anchor" name="opci-n-1-sub-ndices" href="#opci-n-1-sub-ndices"><span class="octicon octicon-link"></span></a>Opción 1. Subíndices</h5>
+        <p>Los subíndices empiezan en 0.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: IDENT IDENT { System.out.println($IDENT(0).getText()); }</code></pre>
+        <p>En este caso, no se puede usar el atajo “$IDENT(0).text” (hay que usar “$IDENT(0).getText()”).</p>
+        <h5 id="opci-n-2-etiquetas"><a class="anchor" name="opci-n-2-etiquetas" href="#opci-n-2-etiquetas"><span class="octicon octicon-link"></span></a>Opción 2. Etiquetas</h5>
+        <p>Usar etiquetas:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: id1=IDENT id2=IDENT { System.out.println($id1.text); }</code></pre>
+        <p>En este caso, se puede usar el atajo “$id1.text”.</p>
+        <h3 id="acceso-a-atributos-de-s-mbolos-no-terminales"><a class="anchor" name="acceso-a-atributos-de-s-mbolos-no-terminales" href="#acceso-a-atributos-de-s-mbolos-no-terminales"><span class="octicon octicon-link"></span></a>Acceso a Atributos de Símbolos No Terminales</h3>
+        <p>Cuando el símbolo <em>b_ es un n</em> terminal, la llamada a <em>b()</em> devuelve su contexto. Para acceder a dicho objeto, siendo coherente con cómo se accede a los tokens, podría parecer que debería poder accederse mediante <em>$b</em>. Sin embargo, esto no es así (por algún motivo que ANTLR no especifica):</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: b { System.out.println($b); }    // Error. Requiere acceder a un atributo</code></pre>
+        <p>Para acceder a dicho contexto, hay que poner <em>$b.ctx</em> o bien, lo que será más habitual, poner ya directamente algún atributo de dicho contexto (ANTLR ya añadirá el prefijo <em>ctx</em> a dicho atributo). Ejemplo:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: b { System.out.println($b.val); }    // Equivale a $b.ctx.val
+    ;
+
+b returns[String val]
+    : IDENT { $val = $IDENT.text; }
+    ;</code></pre>
+        <h4 id="no-terminales-opcionales"><a class="anchor" name="no-terminales-opcionales" href="#no-terminales-opcionales"><span class="octicon octicon-link"></span></a>No-Terminales Opcionales</h4>
+        <p>Si el símbolo no aparece en la entrada, al acceder a su contexto se obtendrá null. Se podrá así saber si apareció o no.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: b? INT_CONSTANT { System.out.println($b.ctx == null); }</code></pre>
+        <p>Nótese que, a diferencia de cómo se hacia con los terminales, aquí no se puede hacer:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: b? INT_CONSTANT { System.out.println($b == null); };</code></pre>
+        <h4 id="no-terminales-repetidos-en-la-regla"><a class="anchor" name="no-terminales-repetidos-en-la-regla" href="#no-terminales-repetidos-en-la-regla"><span class="octicon octicon-link"></span></a>No-Terminales Repetidos en la Regla</h4>
+        <p>Si hay varios no-terminales con el mismo nombre, mediante dicho nombre sólo se accede al último de ellos:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: b b { System.out.println($b.val); } // La segunda b
+    ;
+
+b returns[String val]
+    : IDENT { $val = $IDENT.text; }
+    ;</code></pre>
+        <p>Para acceder a cualquier otro token, hay dos opciones: subíndices y etiquetas.</p>
+        <h5 id="opci-n-1-acceso-con-sub-ndices"><a class="anchor" name="opci-n-1-acceso-con-sub-ndices" href="#opci-n-1-acceso-con-sub-ndices"><span class="octicon octicon-link"></span></a>Opción 1. Acceso con Subíndices</h5>
+        <p>Los subíndices empiezan en 0.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: b b { System.out.println($ctx.b(0).val); }; // La primera b</code></pre>
+        <p>Nótese que, a diferencia de con los terminales, es obligatorio poner <em>$ctx</em> antes del nombre del símbolo.</p>
+        <h5 id="opci-n-2-acceso-con-etiquetas"><a class="anchor" name="opci-n-2-acceso-con-etiquetas" href="#opci-n-2-acceso-con-etiquetas"><span class="octicon octicon-link"></span></a>Opción 2. Acceso con Etiquetas</h5>
+        <p>Usar etiquetas. Este caso si que es igual que con los terminales.</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: id1=b id2=b { System.out.println($id1.val); };</code></pre>
+        <h2 id="creaci-n-de-listas-java-en-antlr"><a class="anchor" name="creaci-n-de-listas-java-en-antlr" href="#creaci-n-de-listas-java-en-antlr"><span class="octicon octicon-link"></span></a>Creación de Listas Java en ANTLR</h2>
+        <p>Al usar la opción de etiquetar los símbolos, se puede añadir un '+' antes del signo '='. De esta manera, ANTLR crea una lista y añade a la misma el token/contexto de dicho símbolo:</p>
+        <p>Ejemplo con terminal:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: l+=IDENT { System.out.println($IDENT == $l.get(0)); } ;</code></pre>
+        <p>Ejemplo con no terminal:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: l+=b { System.out.println($b.ctx == $l.get(0)); } ;</code></pre>
+        <p>Aunque lo anterior se puede hacer, la verdadera utilidad de esta opción es usarla cuando en la regla aparezcan los operadores EBNF de repetición ('+' y '*'). Se evita así tener que escribir el código Java para añadirlos a una lista y, sobre todo, permite unas reglas más limpias al tener todo el código Java al final de las mismas (y no intercaladas entre los símbolos).</p>
+        <p>Ejemplo con terminales:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: l+=IDENT (',' l+=IDENT)*
+        { for (Token val : $l) { System.out.println(val); }};</code></pre>
+        <p>Ejemplo con no-terminales:</p>
+        <pre class=" language-antlr"><code class=" language-antlr">a: l+=expr (',' l+=expr)*
+        { for (ExprContext ctx : $l) { System.out.println(ctx.ast); }};</code></pre>
+    </div>
+</body>
+
+</html>

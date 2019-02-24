@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css">
+.value { font-weight: bold; }
+.dots { color: #bebdbd; }
+.type { color: #BBBBBB; }
+.pos { color: #CCCCCC; }
+.sourceText { color: #BBBBBB; }
+.posText {
+	color: #BBBBBB;
+	text-decoration: underline; font-weight: bold;
+}
+.null {
+	color: #FF0000;
+	font-weight: bold;
+	font-style: italic;
+}
+</style>
+</head>
+
+<body><pre>
+[ASTPrinter] -------------------------------- line:col  line:col
+
+<span class="dots"></span>Program &rarr;                                                   <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  </span>definitions  <span class="type">List&lt;VarDefinition&gt;</span> = 
+<span class="dots">.  .  </span>VarDefinition &rarr;                                       <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span><span class="value">RealType</span> &rarr;                                         <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>"<span class="value">precio</span>"  
+<span class="dots">.  .  </span>VarDefinition &rarr;                                       <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span><span class="value">IntType</span> &rarr;                                          <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>"<span class="value">ancho</span>"  
+<span class="dots">.  </span>sentences  <span class="type">List&lt;Sentence&gt;</span> = 
+<span class="dots">.  .  </span>Assignment &rarr;                                          <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>"ancho"  <span class="type">Variable.name</span>                             <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>ArithmeticExpression &rarr;                             <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  .  </span>"25"  <span class="type">IntConstant.value</span>                         <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  .  </span>"<span class="value">*</span>"  
+<span class="dots">.  .  |  .  </span>ArithmeticExpression &rarr;                          <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  .  |  </span>"2"  <span class="type">IntConstant.value</span>                       <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  .  |  </span>"<span class="value">+</span>"  
+<span class="dots">.  .  |  .  |  </span>"1"  <span class="type">IntConstant.value</span>                       <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  </span>Print &rarr;                                               <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>"ancho"  <span class="type">Variable.name</span>                             <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  </span>Assignment &rarr;                                          <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>"precio"  <span class="type">Variable.name</span>                            <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>"5.0"  <span class="type">RealConstant.value</span>                          <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  </span>Print &rarr;                                               <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>ArithmeticExpression &rarr;                             <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  .  </span>"precio"  <span class="type">Variable.name</span>                         <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  .  </span>"<span class="value">/</span>"  
+<span class="dots">.  .  |  .  </span>"2.0"  <span class="type">RealConstant.value</span>                       <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+
+[ASTPrinter] --------------------------------
+</pre>
+</body>
+</html>

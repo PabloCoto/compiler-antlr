@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.*;
 
 public class TipoChar extends AbstractTipo {
 
+	
 	@Override
 	public Object accept(Visitor v, Object param) { 
 		return v.visit(this, param);

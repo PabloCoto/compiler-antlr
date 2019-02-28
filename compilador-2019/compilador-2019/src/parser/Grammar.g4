@@ -41,9 +41,9 @@ defFuncion returns[DefFuncion ast]
 	
 /* Diferentes tipos reconocidos en el programa */
 tipo returns[Tipo ast]
-	: 'int' {  $ast = new TipoEntero(); }
-	| 'float' {  $ast = new TipoReal(); }
-	| 'char' {  $ast = new TipoChar(); }
+	: INT {  $ast = new TipoEntero(); }
+	| FLOAT {  $ast = new TipoReal(); }
+	| CHAR {  $ast = new TipoChar(); }
 	| IDENT {  $ast = new TipoStruct($IDENT); }
 	| tipoArray {  $ast = $tipoArray.ast; }
 	| {  $ast = new TipoVoid(); }

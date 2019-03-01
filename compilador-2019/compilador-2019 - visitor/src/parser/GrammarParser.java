@@ -544,7 +544,7 @@ public class GrammarParser extends Parser {
 			case T__4:
 				enterOuterAlt(_localctx, 2);
 				{
-				  ((TipoRetornoContext)_localctx).ast =  new TipoVoid(); 
+				  ((TipoRetornoContext)_localctx).ast =  new TipoVoid(); _localctx.ast.setPositions();
 				}
 				break;
 			default:
@@ -1569,7 +1569,7 @@ public class GrammarParser extends Parser {
 				sentencias();
 				setState(338);
 				match(T__5);
-				 ((SentenciaCondicionalContext)_localctx).ast =  new SentenciaCondicional(((SentenciaCondicionalContext)_localctx).expresion.ast, _localctx.sentencias(0).list, null);
+				 ((SentenciaCondicionalContext)_localctx).ast =  new SentenciaCondicional(((SentenciaCondicionalContext)_localctx).expresion.ast, _localctx.sentencias(0).list, null); 
 				}
 				break;
 			}

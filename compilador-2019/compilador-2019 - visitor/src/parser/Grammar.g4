@@ -133,5 +133,5 @@ bucleWhile returns[Sentencia ast]
 /* Definicion de la sentencia condicional */
 sentenciaCondicional returns[Sentencia ast]
 	: 'if' '(' expresion ')' '{' sentencias '}' ('else' '{' sentencias '}') { $ast = new SentenciaCondicional($expresion.ast, $ctx.sentencias(0).list, $ctx.sentencias(1).list);}
-	| 'if' '(' expresion ')' '{' sentencias '}' { $ast = new SentenciaCondicional($expresion.ast, $ctx.sentencias(0).list, null);}
+	| 'if' '(' expresion ')' '{' sentencias '}' { $ast = new SentenciaCondicional($expresion.ast, $ctx.sentencias(0).list, null); }
 	;

@@ -48,6 +48,8 @@ public class CuerpoStruct extends AbstractAST  {
 	public Object accept(Visitor v, Object param) { 
 		return v.visit(this, param);
 	}
+	
+
 
 	private String ident;
 	private Tipo tipo;
@@ -55,4 +57,5 @@ public class CuerpoStruct extends AbstractAST  {
 	public String toString() {
        return "{ident:" + getIdent() + ", tipo:" + getTipo() + "}";
    }
+
 }

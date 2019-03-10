@@ -64,14 +64,14 @@ tipoArray returns[Tipo ast]
 	;
 
 /* Lista de parametros usada en la funcion -puede estar vacio- */
-listaParametros returns[List<Param> list = new ArrayList<Param>();]
+listaParametros returns[List<DefVariable> list = new ArrayList<DefVariable>();]
 	: '(' (paramFuncion{$list.add($paramFuncion.ast);}(',' paramFuncion{$list.add($paramFuncion.ast);})*) ')'
 	|  '(' ')'
 	;
 
 /* Parametros que se pueden pasar a una funcion */
-paramFuncion returns[Param ast]
-	: IDENT ':' tipo {  $ast = new Param($IDENT, $tipo.ast); }
+paramFuncion returns[DefVariable ast]
+	: IDENT ':' tipo {  $ast = new DefVariable($IDENT, $tipo.ast); }
 	;
 	
 /* Lista de definiciones de variables */

@@ -50,9 +50,18 @@ public class InvocacionFuncion extends AbstractAST implements Sentencia, Expresi
 	public Object accept(Visitor v, Object param) { 
 		return v.visit(this, param);
 	}
+	
+	public DefFuncion getDefinicion() {
+        return definition;
+    }
+
+    public void setDefinicion(DefFuncion definition) {
+        this.definition = definition;
+    }
 
 	private String id;
 	private List<Expresion> parametros;
+	private DefFuncion definition;
 
 	public String toString() {
        return "{id:" + getId() + ", parametros:" + getParametros() + "}";

@@ -666,7 +666,7 @@ public class GrammarParser extends Parser {
 	}
 
 	public static class ListaParametrosContext extends ParserRuleContext {
-		public List<Param> list = new ArrayList<Param>();;
+		public List<DefVariable> list = new ArrayList<DefVariable>();;
 		public ParamFuncionContext paramFuncion;
 		public List<ParamFuncionContext> paramFuncion() {
 			return getRuleContexts(ParamFuncionContext.class);
@@ -742,7 +742,7 @@ public class GrammarParser extends Parser {
 	}
 
 	public static class ParamFuncionContext extends ParserRuleContext {
-		public Param ast;
+		public DefVariable ast;
 		public Token IDENT;
 		public TipoContext tipo;
 		public TerminalNode IDENT() { return getToken(GrammarParser.IDENT, 0); }
@@ -767,7 +767,7 @@ public class GrammarParser extends Parser {
 			match(T__1);
 			setState(144);
 			((ParamFuncionContext)_localctx).tipo = tipo();
-			  ((ParamFuncionContext)_localctx).ast =  new Param(((ParamFuncionContext)_localctx).IDENT, ((ParamFuncionContext)_localctx).tipo.ast); 
+			  ((ParamFuncionContext)_localctx).ast =  new DefVariable(((ParamFuncionContext)_localctx).IDENT, ((ParamFuncionContext)_localctx).tipo.ast); 
 			}
 		}
 		catch (RecognitionException re) {

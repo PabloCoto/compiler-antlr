@@ -9,11 +9,11 @@ import visitor.*;
 
 import org.antlr.v4.runtime.*;
 
-//	defFuncion:definicion -> ident:String  parametrosFuncion:param*  tipo:tipo  definiciones:defVariable*  sentencias:sentencia*
+//	defFuncion:definicion -> ident:String  parametrosFuncion:defVariable*  tipo:tipo  definiciones:defVariable*  sentencias:sentencia*
 
 public class DefFuncion extends AbstractDefinicion {
 
-	public DefFuncion(String ident, List<Param> parametrosFuncion, Tipo tipo, List<DefVariable> definiciones, List<Sentencia> sentencias) {
+	public DefFuncion(String ident, List<DefVariable> parametrosFuncion, Tipo tipo, List<DefVariable> definiciones, List<Sentencia> sentencias) {
 		this.ident = ident;
 		this.parametrosFuncion = parametrosFuncion;
 		this.tipo = tipo;
@@ -28,7 +28,7 @@ public class DefFuncion extends AbstractDefinicion {
 	@SuppressWarnings("unchecked")
 	public DefFuncion(Object ident, Object parametrosFuncion, Object tipo, Object definiciones, Object sentencias) {
 		this.ident = (ident instanceof Token) ? ((Token)ident).getText() : (String) ident;
-		this.parametrosFuncion = (List<Param>) parametrosFuncion;
+		this.parametrosFuncion = (List<DefVariable>) parametrosFuncion;
 		this.tipo = (Tipo) ((tipo instanceof ParserRuleContext) ? getAST(tipo) : tipo);
 		this.definiciones = (List<DefVariable>) definiciones;
 		this.sentencias = (List<Sentencia>) sentencias;
@@ -45,10 +45,10 @@ public class DefFuncion extends AbstractDefinicion {
 		this.ident = ident;
 	}
 
-	public List<Param> getParametrosFuncion() {
+	public List<DefVariable> getParametrosFuncion() {
 		return parametrosFuncion;
 	}
-	public void setParametrosFuncion(List<Param> parametrosFuncion) {
+	public void setParametrosFuncion(List<DefVariable> parametrosFuncion) {
 		this.parametrosFuncion = parametrosFuncion;
 	}
 
@@ -79,7 +79,7 @@ public class DefFuncion extends AbstractDefinicion {
 	}
 
 	private String ident;
-	private List<Param> parametrosFuncion;
+	private List<DefVariable> parametrosFuncion;
 	private Tipo tipo;
 	private List<DefVariable> definiciones;
 	private List<Sentencia> sentencias;

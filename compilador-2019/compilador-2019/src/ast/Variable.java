@@ -37,8 +37,17 @@ public class Variable extends AbstractExpresion {
 	}
 
 	private String ident;
+	private DefVariable definicion;
 
 	public String toString() {
        return "{ident:" + getIdent() + "}";
    }
+
+	public void setDefinicion(DefVariable definicion) {
+		this.definicion = definicion;		
+	}
+	
+	public DefVariable getDefinicion() {
+		return this.definicion;
+	}
 }

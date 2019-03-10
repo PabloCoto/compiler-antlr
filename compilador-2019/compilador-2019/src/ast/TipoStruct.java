@@ -35,8 +35,18 @@ public class TipoStruct extends AbstractTipo {
 	public Object accept(Visitor v, Object param) { 
 		return v.visit(this, param);
 	}
+	
+
+	public void setDefinicion(DefStruct struct) {
+		this.definition = struct;
+	}
+	
+	public DefStruct getDefinicion() {
+		return definition;
+	}
 
 	private String ident;
+	private DefStruct definition;
 
 	public String toString() {
        return "{ident:" + getIdent() + "}";

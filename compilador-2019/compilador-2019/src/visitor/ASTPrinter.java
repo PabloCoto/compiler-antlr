@@ -137,28 +137,17 @@ public class ASTPrinter extends DefaultVisitor {
 		return null;
 	}
 
-	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
+	//	class DefFuncion { String ident;  List<DefVariable> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
 		int indent = ((Integer)param).intValue();
 
 		printName(indent, "DefFuncion", node, false);
 
 		print(indent + 1, "ident", "String", node.getIdent());
-		visit(indent + 1, "parametrosFuncion", "List<Param>",node.getParametrosFuncion());
+		visit(indent + 1, "parametrosFuncion", "List<DefVariable>",node.getParametrosFuncion());
 		visit(indent + 1, "tipo", "Tipo",node.getTipo());
 		visit(indent + 1, "definiciones", "List<DefVariable>",node.getDefiniciones());
 		visit(indent + 1, "sentencias", "List<Sentencia>",node.getSentencias());
-		return null;
-	}
-
-	//	class Param { String ident;  Tipo tipo; }
-	public Object visit(Param node, Object param) {
-		int indent = ((Integer)param).intValue();
-
-		printName(indent, "Param", node, false);
-
-		print(indent + 1, "ident", "String", node.getIdent());
-		visit(indent + 1, "tipo", "Tipo",node.getTipo());
 		return null;
 	}
 

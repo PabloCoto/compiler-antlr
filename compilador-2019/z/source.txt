@@ -1,0 +1,8 @@
+DATA
+	float precio;
+	int precio;	// Error: variable YA definida
+	int ancho;
+
+CODE
+	print precio;
+	print nodefinida;	// Error: variable NO definida

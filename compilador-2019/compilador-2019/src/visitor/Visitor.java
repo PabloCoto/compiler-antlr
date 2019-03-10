@@ -12,7 +12,6 @@ public interface Visitor {
 	public Object visit(DefStruct node, Object param);
 	public Object visit(CuerpoStruct node, Object param);
 	public Object visit(DefFuncion node, Object param);
-	public Object visit(Param node, Object param);
 	public Object visit(TipoEntero node, Object param);
 	public Object visit(TipoReal node, Object param);
 	public Object visit(TipoChar node, Object param);

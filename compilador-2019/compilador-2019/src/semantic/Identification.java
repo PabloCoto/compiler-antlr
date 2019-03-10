@@ -8,56 +8,117 @@ import visitor.*;
 
 public class Identification extends DefaultVisitor {
 
-    public Identification(ErrorManager errorManager) {
-        this.errorManager = errorManager;
-    }
+	// hashmaps
+	private Map<String, DefFuncion> funciones = new HashMap<String, DefFuncion>();
+	private ContextMap<String, DefVariable> variables = new ContextMap<String, DefVariable>();
+	private Map<String, DefStruct> estructuras = new HashMap<String, DefStruct>();
+	Map<String, CuerpoStruct> cuerpoStruct = new HashMap<String, CuerpoStruct>();
 
-    /*
-     * Poner aquí los visit necesarios.
-     * Si se ha usado VGen, solo hay que copiarlos de la clase 'visitor/_PlantillaParaVisitors.txt'.
-     */
+	private ErrorManager errorManager;
 
-    // public Object visit(Programa prog, Object param) {
-    //      ...
-    // }
+	public Identification(ErrorManager errorManager) {
+		this.errorManager = errorManager;
+	}
 
-    // ...
-    // ...
-    // ...
+	// class DefVariable { String ident; Tipo tipo; }
+	public Object visit(DefVariable node, Object param) {
+		DefVariable definicion = variables.getFromTop(node.getIdent());
+		predicado(definicion == null, "Variable repetida: " + node.getIdent(), node.getStart());
+		variables.put(node.getIdent(), node);
+		return super.visit(node, param);
+	}
 
-    /**
-     * predicado. Método auxiliar para implementar los predicados. Borrar si no se quiere usar.
-     *
-     * Ejemplos de uso (suponiendo que existe un método "esPrimitivo"):
-     *
-     *      1. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo pimitivo", expr.getStart());
-     *      2. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo pimitivo", expr);
-     *      3. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo primitivo");
-     *
-     * NOTA: El método getStart() (ejemplo 1) indica la linea/columna del fichero fuente donde estaba el nodo
-     * (y así poder dar información más detallada de la posición del error). Si se usa VGen, dicho método
-     * habrá sido generado en todos los nodos del AST.
-     * No es obligatorio llamar a getStart() (ejemplo 2), ya que si se pasa el nodo, se usará por defecto dicha
-     * posición.
-     * Si no se quiere imprimir la posición del fichero, se puede omitir el tercer argumento (ejemplo 3).
-     *
-     * @param condicion     Debe cumplirse para que no se produzca un error
-     * @param mensajeError  Se imprime si no se cumple la condición
-     * @param posicionError Fila y columna del fichero donde se ha producido el error.
-     */
-    private void predicado(boolean condicion, String mensajeError, Position posicionError) {
-        if (!condicion)
-            errorManager.notify("Comprobación de tipos", mensajeError, posicionError);
-    }
+	// class DefStruct { String ident; List<CuerpoStruct> cuerpostruct; }
+	public Object visit(DefStruct node, Object param) {
+		DefStruct definicion = estructuras.get(node.getIdent());
+		predicado(definicion == null, "Estructura repetida: " + node.getIdent(), node);
 
-    private void predicado(boolean condicion, String mensajeError, AST node) {
-        predicado(condicion, mensajeError, node.getStart());
-    }
+		for (CuerpoStruct campo : node.getCuerpostruct()) {
+			CuerpoStruct defCampo = cuerpoStruct.get(campo.getIdent());
+			predicado(defCampo == null, "Campo repetido: " + campo.getIdent(), campo.getStart());
 
-    private void predicado(boolean condicion, String mensajeError) {
-        predicado(condicion, mensajeError, (Position) null);
-    }
+			cuerpoStruct.put(campo.getIdent(), campo);
+		}
 
+		estructuras.put(node.getIdent(), node);
 
-    private ErrorManager errorManager;
+		return super.visit(node, param);
+	}
+
+	// class DefFuncion { String ident; List<Param> parametrosFuncion; Tipo tipo;
+	// List<DefVariable> definiciones; List<Sentencia> sentencias; }
+	public Object visit(DefFuncion node, Object param) {
+		DefFuncion definicion = funciones.get(node.getIdent());
+		predicado(definicion == null, "Funcion repetida: " + node.getIdent(), node);
+		funciones.put(node.getIdent(), node);
+
+		variables.set();
+		super.visit(node, funciones.get(node.getIdent()));
+		variables.reset();
+
+		return null;
+	}
+
+	// class TipoStruct { String ident; }
+	public Object visit(TipoStruct node, Object param) {
+		DefStruct definicion = estructuras.get(node.getIdent());
+		predicado(definicion != null, "Estructura no definida: " + node.getIdent(), node.getStart());
+		node.setDefinicion(definicion); // Enlazar referencia con definicion
+		return super.visit(node, param);
+	}
+
+	// class InvocacionFuncion { String id; List<Expresion> parametros; }
+	public Object visit(InvocacionFuncion node, Object param) {
+		DefFuncion funcion = funciones.get(node.getId());
+		predicado(funcion != null, "Funcion no definida: " + node.getId(), node);
+		node.setDefinicion(funcion); // Enlazar referencia con definicion
+		return null;
+	}
+
+	// class Variable { String ident; }
+	public Object visit(Variable node, Object param) {
+		DefVariable definicion = variables.getFromAny(node.getIdent());
+		predicado(definicion != null, "Variable no definida: " + node.getIdent(), node.getStart());
+		node.setDefinicion(definicion); // Enlazar referencia con definici�n
+		return null;
+	}
+
+	/**
+	 * predicado. Método auxiliar para implementar los predicados. Borrar si no se
+	 * quiere usar.
+	 *
+	 * Ejemplos de uso (suponiendo que existe un método "esPrimitivo"):
+	 *
+	 * 1. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo
+	 * pimitivo", expr.getStart()); 2. predicado(esPrimitivo(expr.tipo), "La
+	 * expresión debe ser de un tipo pimitivo", expr); 3.
+	 * predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo
+	 * primitivo");
+	 *
+	 * NOTA: El método getStart() (ejemplo 1) indica la linea/columna del fichero
+	 * fuente donde estaba el nodo (y así poder dar información más detallada de
+	 * la posición del error). Si se usa VGen, dicho método habrá sido generado
+	 * en todos los nodos del AST. No es obligatorio llamar a getStart() (ejemplo
+	 * 2), ya que si se pasa el nodo, se usará por defecto dicha posición. Si no
+	 * se quiere imprimir la posición del fichero, se puede omitir el tercer
+	 * argumento (ejemplo 3).
+	 *
+	 * @param condicion     Debe cumplirse para que no se produzca un error
+	 * @param mensajeError  Se imprime si no se cumple la condición
+	 * @param posicionError Fila y columna del fichero donde se ha producido el
+	 *                      error.
+	 */
+	private void predicado(boolean condicion, String mensajeError, Position posicionError) {
+		if (!condicion)
+			errorManager.notify("Identificacion", mensajeError, posicionError);
+	}
+
+	private void predicado(boolean condicion, String mensajeError, AST node) {
+		predicado(condicion, mensajeError, node.getStart());
+	}
+
+	private void predicado(boolean condicion, String mensajeError) {
+		predicado(condicion, mensajeError, (Position) null);
+	}
+
 }

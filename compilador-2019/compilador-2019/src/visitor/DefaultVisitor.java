@@ -40,20 +40,13 @@ public class DefaultVisitor implements Visitor {
 		return null;
 	}
 
-	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
+	//	class DefFuncion { String ident;  List<DefVariable> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
 		visitChildren(node.getParametrosFuncion(), param);
 		if (node.getTipo() != null)
 			node.getTipo().accept(this, param);
 		visitChildren(node.getDefiniciones(), param);
 		visitChildren(node.getSentencias(), param);
-		return null;
-	}
-
-	//	class Param { String ident;  Tipo tipo; }
-	public Object visit(Param node, Object param) {
-		if (node.getTipo() != null)
-			node.getTipo().accept(this, param);
 		return null;
 	}
 

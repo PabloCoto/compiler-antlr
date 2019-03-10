@@ -48,12 +48,11 @@
         </tr>
 <tr><td><span class="nodo">programa</span>&nbsp;&rarr;  <span class="nombreAtt">definicion</span><span class="tipoAtt">:definicion*</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">cuerpoStruct</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span> <span class="nombreAtt">tipo</span><span class="tipoAtt">:tipo</span></td><td></td><td></td></tr>
-<tr><td><span class="nodo">param</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span> <span class="nombreAtt">tipo</span><span class="tipoAtt">:tipo</span></td><td></td><td></td></tr>
 <tr><td>&nbsp;</td><td></td><td></td></tr>
 
 <tr><td><span class="nodo">defVariable</span>:<span class="categoria">definicion</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span> <span class="nombreAtt">tipo</span><span class="tipoAtt">:tipo</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">defStruct</span>:<span class="categoria">definicion</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span> <span class="nombreAtt">cuerpostruct</span><span class="tipoAtt">:cuerpoStruct*</span></td><td></td><td></td></tr>
-<tr><td><span class="nodo">defFuncion</span>:<span class="categoria">definicion</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span> <span class="nombreAtt">parametrosFuncion</span><span class="tipoAtt">:param*</span> <span class="nombreAtt">tipo</span><span class="tipoAtt">:tipo</span> <span class="nombreAtt">definiciones</span><span class="tipoAtt">:defVariable*</span> <span class="nombreAtt">sentencias</span><span class="tipoAtt">:sentencia*</span></td><td></td><td></td></tr>
+<tr><td><span class="nodo">defFuncion</span>:<span class="categoria">definicion</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span> <span class="nombreAtt">parametrosFuncion</span><span class="tipoAtt">:defVariable*</span> <span class="nombreAtt">tipo</span><span class="tipoAtt">:tipo</span> <span class="nombreAtt">definiciones</span><span class="tipoAtt">:defVariable*</span> <span class="nombreAtt">sentencias</span><span class="tipoAtt">:sentencia*</span></td><td></td><td></td></tr>
 <tr><td>&nbsp;</td><td></td><td></td></tr>
 
 <tr><td><span class="nodo">tipoEntero</span>:<span class="categoria">tipo</span>&nbsp;&rarr; &lambda;</td><td></td><td></td></tr>

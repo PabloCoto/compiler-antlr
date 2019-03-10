@@ -84,13 +84,13 @@ public class <nombre clase> extends DefaultVisitor {
 		return null;
 	}
 
-	//	class DefFuncion { String ident;  List<Param> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
+	//	class DefFuncion { String ident;  List<DefVariable> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
 
 		// super.visit(node, param);
 
 		if (node.getParametrosFuncion() != null)
-			for (Param child : node.getParametrosFuncion())
+			for (DefVariable child : node.getParametrosFuncion())
 				child.accept(this, param);
 
 		if (node.getTipo() != null)
@@ -103,17 +103,6 @@ public class <nombre clase> extends DefaultVisitor {
 		if (node.getSentencias() != null)
 			for (Sentencia child : node.getSentencias())
 				child.accept(this, param);
-
-		return null;
-	}
-
-	//	class Param { String ident;  Tipo tipo; }
-	public Object visit(Param node, Object param) {
-
-		// super.visit(node, param);
-
-		if (node.getTipo() != null)
-			node.getTipo().accept(this, param);
 
 		return null;
 	}

@@ -8,6 +8,8 @@ import visitor.*;
 
 import org.antlr.v4.runtime.*;
 
+import ast.enumerable.AmbitoVariable;
+
 //	defVariable:definicion -> ident:String  tipo:tipo
 
 public class DefVariable extends AbstractDefinicion {
@@ -24,7 +26,7 @@ public class DefVariable extends AbstractDefinicion {
 	public DefVariable(Object ident, Object tipo) {
 		this.ident = (ident instanceof Token) ? ((Token)ident).getText() : (String) ident;
 		this.tipo = (Tipo) ((tipo instanceof ParserRuleContext) ? getAST(tipo) : tipo);
-
+		
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
        setPositions(ident, tipo);

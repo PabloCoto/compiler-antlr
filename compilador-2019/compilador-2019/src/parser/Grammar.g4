@@ -49,7 +49,7 @@ tipo returns[Tipo ast]
 	;
 	
 tipoRetorno returns[Tipo ast]
-	: tipo { $ast = $tipo.ast;}
+	: tipo { $ast = $tipo.ast;}           /* ERROR PUEDES PONER : solo */
 	| {  $ast = new TipoVoid(); }
 	;
 	

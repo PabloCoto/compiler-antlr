@@ -53,7 +53,7 @@ public class Identification extends DefaultVisitor {
 		funciones.put(node.getIdent(), node);
 
 		variables.set();
-		super.visit(node, funciones.get(node.getIdent()));
+		super.visit(node, funciones.get(node.getIdent())); //cambiar por param
 		variables.reset();
 
 		return null;

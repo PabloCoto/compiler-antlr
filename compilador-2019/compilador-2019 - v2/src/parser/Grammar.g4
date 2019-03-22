@@ -90,14 +90,14 @@ sentencia returns[Sentencia ast]
 	: 'return' expresion ';' { $ast = new Return($expresion.ast); }
 	| et='return' ';' { $ast = new Return(null); $ast.setPositions($et); }
 	| expresion '=' expresion ';' { $ast = new Asignacion($ctx.expresion(0).ast, $ctx.expresion(1).ast); }
-	| 'printsp' expresion ';' { $ast = new Print($expresion.ast); }
+	| 'printsp' expresion ';' { $ast = new Printsp($expresion.ast); }
 	| 'print' expresion ';' { $ast = new Print($expresion.ast); }
-	| 'println' expresion ';' { $ast = new Print($expresion.ast); }
-	| 'println' ';' { $ast = new Print(null); }
+	| 'println' expresion ';' { $ast = new Println($expresion.ast); }
+	| 'println' ';' { $ast = new Println(null); }
 	| 'read' expresion ';' { $ast = new Read($expresion.ast); }
 	| bucleWhile { $ast = $bucleWhile.ast; }
 	| sentenciaCondicional { $ast = $sentenciaCondicional.ast; }
-	| IDENT parametrosInvocacion ';'  { $ast = new InvocacionFuncion($IDENT, $parametrosInvocacion.list); }
+	| IDENT parametrosInvocacion ';'  { $ast = new InvocacionFuncionSentencia($IDENT, $parametrosInvocacion.list); }
 	;
 
 /* Diferentes parametros que puede tener una invocacion a una funcion -puede estar vacio- */
@@ -121,9 +121,9 @@ expresion returns[Expresion ast]
 	|  ex1=expresion op=('+'|'-') ex2=expresion  { $ast = new ExpresionAritmetica($ex1.ast, $op, $ex2.ast);}
 	| ex1=expresion op=('>'|'>='|'<'|'<=') ex2=expresion { $ast = new ExpresionBinaria($ex1.ast, $op, $ex2.ast);}
 	| ex1=expresion op=('=='|'!=') ex2=expresion { $ast = new ExpresionBinaria($ex1.ast, $op, $ex2.ast);}
-	| ex1=expresion op='&&' ex2=expresion { $ast = new ExpresionBinaria($ex1.ast, $op, $ex2.ast);}
-	| ex1=expresion op='||' ex2=expresion { $ast = new ExpresionBinaria($ex1.ast, $op, $ex2.ast);}
-	| IDENT parametrosInvocacion { $ast = new InvocacionFuncion($IDENT, $parametrosInvocacion.list);}
+	| ex1=expresion op='&&' ex2=expresion { $ast = new ExpresionLogica($ex1.ast, $op, $ex2.ast);}
+	| ex1=expresion op='||' ex2=expresion { $ast = new ExpresionLogica($ex1.ast, $op, $ex2.ast);}
+	| IDENT parametrosInvocacion { $ast = new InvocacionFuncionExpresion($IDENT, $parametrosInvocacion.list);}
 	;
 
 /* Definicion de la sentencia del bucle while */

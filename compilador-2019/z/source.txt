@@ -1,8 +1,10 @@
 DATA
-	float precio;
-	int precio;	// Error: variable YA definida
-	int ancho;
+	float f;
+	int i;
 
 CODE
-	print precio;
-	print nodefinida;	// Error: variable NO definida
+	i = 2.0;	// Error
+	f = 2;		// Error
+	print 1 + 2.5;	// Error
+	2 = i;			// Error, pero no de tipo
+	

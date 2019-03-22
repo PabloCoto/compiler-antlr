@@ -168,8 +168,30 @@ public class <nombre clase> extends DefaultVisitor {
 		return null;
 	}
 
+	//	class Printsp { Expresion expresion; }
+	public Object visit(Printsp node, Object param) {
+
+		// super.visit(node, param);
+
+		if (node.getExpresion() != null)
+			node.getExpresion().accept(this, param);
+
+		return null;
+	}
+
 	//	class Print { Expresion expresion; }
 	public Object visit(Print node, Object param) {
+
+		// super.visit(node, param);
+
+		if (node.getExpresion() != null)
+			node.getExpresion().accept(this, param);
+
+		return null;
+	}
+
+	//	class Println { Expresion expresion; }
+	public Object visit(Println node, Object param) {
 
 		// super.visit(node, param);
 
@@ -224,8 +246,8 @@ public class <nombre clase> extends DefaultVisitor {
 		return null;
 	}
 
-	//	class InvocacionFuncion { String id;  List<Expresion> parametros; }
-	public Object visit(InvocacionFuncion node, Object param) {
+	//	class InvocacionFuncionSentencia { String id;  List<Expresion> parametros; }
+	public Object visit(InvocacionFuncionSentencia node, Object param) {
 
 		// super.visit(node, param);
 
@@ -330,6 +352,32 @@ public class <nombre clase> extends DefaultVisitor {
 
 		if (node.getDerecha() != null)
 			node.getDerecha().accept(this, param);
+
+		return null;
+	}
+
+	//	class ExpresionLogica { Expresion izquierda;  String operador;  Expresion derecha; }
+	public Object visit(ExpresionLogica node, Object param) {
+
+		// super.visit(node, param);
+
+		if (node.getIzquierda() != null)
+			node.getIzquierda().accept(this, param);
+
+		if (node.getDerecha() != null)
+			node.getDerecha().accept(this, param);
+
+		return null;
+	}
+
+	//	class InvocacionFuncionExpresion { String id;  List<Expresion> parametros; }
+	public Object visit(InvocacionFuncionExpresion node, Object param) {
+
+		// super.visit(node, param);
+
+		if (node.getParametros() != null)
+			for (Expresion child : node.getParametros())
+				child.accept(this, param);
 
 		return null;
 	}

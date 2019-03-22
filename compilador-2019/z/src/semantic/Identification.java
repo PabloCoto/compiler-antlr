@@ -1,3 +1,8 @@
+/**
+ * Tutorial de Diseño de Lenguajes de Programación
+ * @author Raúl Izquierdo
+ */
+
 package semantic;
 
 import java.util.*;
@@ -7,6 +12,7 @@ import main.*;
 import visitor.*;
 
 public class Identification extends DefaultVisitor {
+    private Map<String, VarDefinition> variables = new HashMap<String, VarDefinition>();
 
     public Identification(ErrorManager errorManager) {
         this.errorManager = errorManager;
@@ -35,8 +41,8 @@ public class Identification extends DefaultVisitor {
      *
      * Ejemplos de uso (suponiendo que existe un método "esPrimitivo"):
      *
-     *      1. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo pimitivo", expr.getStart());
-     *      2. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo pimitivo", expr);
+     *      1. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo primitivo", expr.getStart());
+     *      2. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo primitivo", expr); // Se asume getStart()
      *      3. predicado(esPrimitivo(expr.tipo), "La expresión debe ser de un tipo primitivo");
      *
      * NOTA: El método getStart() (ejemplo 1) indica la linea/columna del fichero fuente donde estaba el nodo
@@ -46,24 +52,23 @@ public class Identification extends DefaultVisitor {
      * posición.
      * Si no se quiere imprimir la posición del fichero, se puede omitir el tercer argumento (ejemplo 3).
      *
-     * @param condicion     Debe cumplirse para que no se produzca un error
-     * @param mensajeError  Se imprime si no se cumple la condición
+     * @param condition     Debe cumplirse para que no se produzca un error
+     * @param errorMessage  Se imprime si no se cumple la condición
      * @param posicionError Fila y columna del fichero donde se ha producido el error.
      */
-    private void predicado(boolean condicion, String mensajeError, Position posicionError) {
-        if (!condicion)
-            errorManager.notify("Identification", mensajeError, posicionError);
+
+    private void predicado(boolean condition, String errorMessage, Position position) {
+        if (!condition)
+            errorManager.notify("Identification", errorMessage, position);
     }
 
-    private void predicado(boolean condicion, String mensajeError, AST node) {
-        predicado(condicion, mensajeError, node.getStart());
+    private void predicado(boolean condition, String errorMessage, AST node) {
+        predicado(condition, errorMessage, node.getStart());
     }
 
-    private void predicado(boolean condicion, String mensajeError) {
-        predicado(condicion, mensajeError, (Position) null);
+    private void predicado(boolean condition, String errorMessage) {
+        predicado(condition, errorMessage, (Position) null);
     }
 
     private ErrorManager errorManager;
-    private Map<String, VarDefinition> variables = new HashMap<String, VarDefinition>();
-
 }

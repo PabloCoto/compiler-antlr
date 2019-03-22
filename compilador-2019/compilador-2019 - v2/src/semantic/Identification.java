@@ -13,7 +13,6 @@ public class Identification extends DefaultVisitor {
 	private Map<String, DefFuncion> funciones = new HashMap<String, DefFuncion>();
 	private ContextMap<String, DefVariable> variables = new ContextMap<String, DefVariable>();
 	private Map<String, DefStruct> estructuras = new HashMap<String, DefStruct>();
-	Map<String, CuerpoStruct> cuerpoStruct = new HashMap<String, CuerpoStruct>();
 
 	private ErrorManager errorManager;
 
@@ -42,6 +41,7 @@ public class Identification extends DefaultVisitor {
 		DefStruct definicion = estructuras.get(node.getIdent());
 		predicado(definicion == null, "Estructura repetida: " + node.getIdent(), node);
 
+		Map<String, CuerpoStruct> cuerpoStruct = new HashMap<String, CuerpoStruct>();
 		for (CuerpoStruct campo : node.getCuerpostruct()) {
 			CuerpoStruct defCampo = cuerpoStruct.get(campo.getIdent());
 			predicado(defCampo == null, "Campo repetido: " + campo.getIdent(), campo.getStart());
@@ -76,8 +76,8 @@ public class Identification extends DefaultVisitor {
 		return super.visit(node, param);
 	}
 
-	// class InvocacionFuncion { String id; List<Expresion> parametros; }
-	public Object visit(InvocacionFuncion node, Object param) {
+	// class InvocacionFuncionExpresion { String id; List<Expresion> parametros; }
+	public Object visit(InvocacionFuncionExpresion node, Object param) {
 		DefFuncion funcion = funciones.get(node.getId());
 		predicado(funcion != null, "Función no definida: " + node.getId(), node);
 		node.setDefinicion(funcion); // Enlazar referencia con definicion

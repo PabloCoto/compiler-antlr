@@ -1,3 +1,8 @@
+/**
+ * Tutorial de Diseño de Lenguajes de Programación
+ * @author Raúl Izquierdo
+ */
+
 package codegeneration;
 
 import java.io.*;
@@ -11,9 +16,6 @@ import ast.*;
  *
  * No es necesario modificar esta clase. En su lugar hay que modificar las clases
  * que son llamadas desde aquí: "MemoryAllocation.java" y "CodeSelection.java".
- *
- * @author Raúl Izquierdo
- *
  */
 public class CodeGeneration {
 

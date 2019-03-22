@@ -227,11 +227,31 @@ public class ASTPrinter extends DefaultVisitor {
 		return null;
 	}
 
+	//	class Printsp { Expresion expresion; }
+	public Object visit(Printsp node, Object param) {
+		int indent = ((Integer)param).intValue();
+
+		printName(indent, "Printsp", node, false);
+
+		visit(indent + 1, "expresion", "Expresion",node.getExpresion());
+		return null;
+	}
+
 	//	class Print { Expresion expresion; }
 	public Object visit(Print node, Object param) {
 		int indent = ((Integer)param).intValue();
 
 		printName(indent, "Print", node, false);
+
+		visit(indent + 1, "expresion", "Expresion",node.getExpresion());
+		return null;
+	}
+
+	//	class Println { Expresion expresion; }
+	public Object visit(Println node, Object param) {
+		int indent = ((Integer)param).intValue();
+
+		printName(indent, "Println", node, false);
 
 		visit(indent + 1, "expresion", "Expresion",node.getExpresion());
 		return null;
@@ -270,11 +290,11 @@ public class ASTPrinter extends DefaultVisitor {
 		return null;
 	}
 
-	//	class InvocacionFuncion { String id;  List<Expresion> parametros; }
-	public Object visit(InvocacionFuncion node, Object param) {
+	//	class InvocacionFuncionSentencia { String id;  List<Expresion> parametros; }
+	public Object visit(InvocacionFuncionSentencia node, Object param) {
 		int indent = ((Integer)param).intValue();
 
-		printName(indent, "InvocacionFuncion", node, false);
+		printName(indent, "InvocacionFuncionSentencia", node, false);
 
 		print(indent + 1, "id", "String", node.getId());
 		visit(indent + 1, "parametros", "List<Expresion>",node.getParametros());
@@ -377,6 +397,29 @@ public class ASTPrinter extends DefaultVisitor {
 		visit(indent + 1, "izquierda", "Expresion",node.getIzquierda());
 		print(indent + 1, "operador", "String", node.getOperador());
 		visit(indent + 1, "derecha", "Expresion",node.getDerecha());
+		return null;
+	}
+
+	//	class ExpresionLogica { Expresion izquierda;  String operador;  Expresion derecha; }
+	public Object visit(ExpresionLogica node, Object param) {
+		int indent = ((Integer)param).intValue();
+
+		printName(indent, "ExpresionLogica", node, false);
+
+		visit(indent + 1, "izquierda", "Expresion",node.getIzquierda());
+		print(indent + 1, "operador", "String", node.getOperador());
+		visit(indent + 1, "derecha", "Expresion",node.getDerecha());
+		return null;
+	}
+
+	//	class InvocacionFuncionExpresion { String id;  List<Expresion> parametros; }
+	public Object visit(InvocacionFuncionExpresion node, Object param) {
+		int indent = ((Integer)param).intValue();
+
+		printName(indent, "InvocacionFuncionExpresion", node, false);
+
+		print(indent + 1, "id", "String", node.getId());
+		visit(indent + 1, "parametros", "List<Expresion>",node.getParametros());
 		return null;
 	}
 

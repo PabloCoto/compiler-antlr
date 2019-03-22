@@ -1,5 +1,5 @@
 /**
- * @generated VGen (for ANTLR) 1.4.0
+ * @generated VGen (for ANTLR) 1.5.0
  */
 
 package ast;
@@ -32,6 +32,17 @@ public class Variable extends AbstractExpression {
         this.name = name;
     }
 
+    @Override
+    public Object accept(Visitor v, Object param) {
+        return v.visit(this, param);
+    }
+
+    private String name;
+
+    public String toString() {
+        return "{name:" + getName() + "}";
+    }
+
     public VarDefinition getDefinicion() {
         return definition;
     }
@@ -40,15 +51,6 @@ public class Variable extends AbstractExpression {
         this.definition = definition;
     }
 
-    @Override
-    public Object accept(Visitor v, Object param) {
-        return v.visit(this, param);
-    }
-
-    public String toString() {
-        return "{name:" + getName() + "}";
-    }
-
-    private String name;
     private VarDefinition definition;
+
 }

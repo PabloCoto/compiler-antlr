@@ -1,5 +1,5 @@
 /**
- * @generated VGen (for ANTLR) 1.4.0
+ * @generated VGen (for ANTLR) 1.5.0
  */
 
 package ast;
@@ -108,6 +108,53 @@ public abstract class AbstractAST implements AST {
         }
         return end;
     }
+
+    // Recibe una List<String> o List<Token> y devuelve una List<String>.
+    // - Si recibe List<String>, devuelve los mismos elementos.
+    // - Si recibe List<Token>, devuelve una List<String> con el getText() de cada Token.
+    // Es el equivalente a getAstFromContexts pero para Terminales.
+	@SuppressWarnings("unchecked")
+	protected List<String> getStringFromTokens(Object objectList) {
+		if (objectList == null)
+			return null;
+
+        if (!(objectList instanceof List))
+            throw new IllegalArgumentException("El argumento debería ser una List");
+
+		List<String> strings = new ArrayList<String>();
+		for (Object o : (List<Object>) objectList)
+			strings.add((o instanceof Token) ? ((Token) o).getText() : (String) o);
+		return strings;
+	}
+
+    // Recibe una List<AST> o List<ParserRuleContext> y devuelve una List<AST>.
+    // - Si recibe List<AST>, devuelve los mismos elementos.
+    // - Si recibe List<ParserRuleContext>, devuelve una List<AST> con el valor del atributo "ast" de cada Context.
+    // Es el equivalente a getStringFromTokens pero para no-Terminales.
+    @SuppressWarnings("unchecked")
+    protected <T> List<T> getAstFromContexts(Object definiciones) {
+        if (definiciones == null)
+            return null;
+
+        if (!(definiciones instanceof List))
+            throw new IllegalArgumentException("El argumento debería ser una List");
+
+        List<T> result = new ArrayList<T>();
+
+        for (Object element : (List<?>) definiciones) {
+            Object ASTNode = element;
+            if (element instanceof ParserRuleContext) {
+                try {
+                    ASTNode = element.getClass().getField("ast").get(element);
+                } catch (IllegalAccessException | NoSuchFieldException e) {
+                    throw new IllegalArgumentException("El objecto pasado no tiene un atributo público llamado 'ast'");
+                }
+            }
+            result.add((T) ASTNode);
+        }
+        return result;
+    }
+
 
     // Para depuración
     private void invariant() {

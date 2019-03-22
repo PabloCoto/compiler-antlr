@@ -1,5 +1,5 @@
 /**
- * @generated VGen (for ANTLR) 1.4.0
+ * @generated VGen (for ANTLR) 1.5.0
  */
 
 package ast;
@@ -24,8 +24,8 @@ public class Program extends AbstractAST  {
 
 	@SuppressWarnings("unchecked")
 	public Program(Object definitions, Object sentences) {
-		this.definitions = (List<VarDefinition>) definitions;
-		this.sentences = (List<Sentence>) sentences;
+		this.definitions = this.<VarDefinition>getAstFromContexts(definitions);
+		this.sentences = this.<Sentence>getAstFromContexts(sentences);
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.

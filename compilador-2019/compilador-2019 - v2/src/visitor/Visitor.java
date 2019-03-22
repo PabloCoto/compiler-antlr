@@ -20,11 +20,13 @@ public interface Visitor {
 	public Object visit(TipoVoid node, Object param);
 	public Object visit(Return node, Object param);
 	public Object visit(Asignacion node, Object param);
+	public Object visit(Printsp node, Object param);
 	public Object visit(Print node, Object param);
+	public Object visit(Println node, Object param);
 	public Object visit(Read node, Object param);
 	public Object visit(BucleWhile node, Object param);
 	public Object visit(SentenciaCondicional node, Object param);
-	public Object visit(InvocacionFuncion node, Object param);
+	public Object visit(InvocacionFuncionSentencia node, Object param);
 	public Object visit(AccesoStruct node, Object param);
 	public Object visit(AccesoArray node, Object param);
 	public Object visit(Variable node, Object param);
@@ -35,4 +37,6 @@ public interface Visitor {
 	public Object visit(Negacion node, Object param);
 	public Object visit(ExpresionAritmetica node, Object param);
 	public Object visit(ExpresionBinaria node, Object param);
+	public Object visit(ExpresionLogica node, Object param);
+	public Object visit(InvocacionFuncionExpresion node, Object param);
 }

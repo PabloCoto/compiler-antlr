@@ -1,5 +1,5 @@
 /**
- * @generated VGen (for ANTLR) 1.4.0
+ * @generated VGen (for ANTLR) 1.5.0
  */
 
 package visitor;
@@ -49,7 +49,7 @@ public class ASTPrinter extends DefaultVisitor {
             writer.println("[ASTPrinter] -------------------------------- line:col  line:col");
             if (raiz != null) {
                 ASTPrinter tracer = new ASTPrinter(writer, loadLines(sourceFile, tabWidth));
-                raiz.accept(tracer, new Integer(0));
+                raiz.accept(tracer, Integer.valueOf(0));
             } else
                 writer.println("raiz == null");
             writer.println(ls + ls + "[ASTPrinter] --------------------------------");
@@ -237,7 +237,7 @@ public class ASTPrinter extends DefaultVisitor {
 
 	private void visit(int indent, String attName, String type, AST child) {
 		if (child != null)
-			child.accept(this, new Integer(indent));
+			child.accept(this, Integer.valueOf(indent));
 		else
 			write(indent, valueTag(null) + "  " + attName + ':' + typeTag(type));
 	}

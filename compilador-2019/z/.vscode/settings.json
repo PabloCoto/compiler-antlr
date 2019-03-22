@@ -10,6 +10,7 @@
     "lex.bat": true,
     "tokens.bat": true,
     "trace.bat": true,
+    "bin": true,
     ".vscode": true
   }
 }

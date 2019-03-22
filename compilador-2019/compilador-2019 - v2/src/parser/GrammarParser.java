@@ -964,7 +964,7 @@ public class GrammarParser extends Parser {
 				((SentenciaContext)_localctx).expresion = expresion(0);
 				setState(179);
 				match(T__2);
-				 ((SentenciaContext)_localctx).ast =  new Print(((SentenciaContext)_localctx).expresion.ast); 
+				 ((SentenciaContext)_localctx).ast =  new Printsp(((SentenciaContext)_localctx).expresion.ast); 
 				}
 				break;
 			case 5:
@@ -988,7 +988,7 @@ public class GrammarParser extends Parser {
 				((SentenciaContext)_localctx).expresion = expresion(0);
 				setState(189);
 				match(T__2);
-				 ((SentenciaContext)_localctx).ast =  new Print(((SentenciaContext)_localctx).expresion.ast); 
+				 ((SentenciaContext)_localctx).ast =  new Println(((SentenciaContext)_localctx).expresion.ast); 
 				}
 				break;
 			case 7:
@@ -998,7 +998,7 @@ public class GrammarParser extends Parser {
 				match(T__15);
 				setState(193);
 				match(T__2);
-				 ((SentenciaContext)_localctx).ast =  new Print(null); 
+				 ((SentenciaContext)_localctx).ast =  new Println(null); 
 				}
 				break;
 			case 8:
@@ -1038,7 +1038,7 @@ public class GrammarParser extends Parser {
 				((SentenciaContext)_localctx).parametrosInvocacion = parametrosInvocacion();
 				setState(208);
 				match(T__2);
-				 ((SentenciaContext)_localctx).ast =  new InvocacionFuncion(((SentenciaContext)_localctx).IDENT, ((SentenciaContext)_localctx).parametrosInvocacion.list); 
+				 ((SentenciaContext)_localctx).ast =  new InvocacionFuncionSentencia(((SentenciaContext)_localctx).IDENT, ((SentenciaContext)_localctx).parametrosInvocacion.list); 
 				}
 				break;
 			}
@@ -1254,7 +1254,7 @@ public class GrammarParser extends Parser {
 				((ExpresionContext)_localctx).IDENT = match(IDENT);
 				setState(259);
 				((ExpresionContext)_localctx).parametrosInvocacion = parametrosInvocacion();
-				 ((ExpresionContext)_localctx).ast =  new InvocacionFuncion(((ExpresionContext)_localctx).IDENT, ((ExpresionContext)_localctx).parametrosInvocacion.list);
+				 ((ExpresionContext)_localctx).ast =  new InvocacionFuncionExpresion(((ExpresionContext)_localctx).IDENT, ((ExpresionContext)_localctx).parametrosInvocacion.list);
 				}
 				break;
 			}
@@ -1378,7 +1378,7 @@ public class GrammarParser extends Parser {
 						((ExpresionContext)_localctx).op = match(T__30);
 						setState(286);
 						((ExpresionContext)_localctx).ex2 = expresion(4);
-						 ((ExpresionContext)_localctx).ast =  new ExpresionBinaria(((ExpresionContext)_localctx).ex1.ast, ((ExpresionContext)_localctx).op, ((ExpresionContext)_localctx).ex2.ast);
+						 ((ExpresionContext)_localctx).ast =  new ExpresionLogica(((ExpresionContext)_localctx).ex1.ast, ((ExpresionContext)_localctx).op, ((ExpresionContext)_localctx).ex2.ast);
 						}
 						break;
 					case 6:
@@ -1393,7 +1393,7 @@ public class GrammarParser extends Parser {
 						((ExpresionContext)_localctx).op = match(T__31);
 						setState(291);
 						((ExpresionContext)_localctx).ex2 = expresion(3);
-						 ((ExpresionContext)_localctx).ast =  new ExpresionBinaria(((ExpresionContext)_localctx).ex1.ast, ((ExpresionContext)_localctx).op, ((ExpresionContext)_localctx).ex2.ast);
+						 ((ExpresionContext)_localctx).ast =  new ExpresionLogica(((ExpresionContext)_localctx).ex1.ast, ((ExpresionContext)_localctx).op, ((ExpresionContext)_localctx).ex2.ast);
 						}
 						break;
 					case 7:

@@ -1,3 +1,8 @@
+/**
+ * Tutorial de Diseño de Lenguajes de Programación
+ * @author Raúl Izquierdo
+ */
+
 package codegeneration;
 
 import java.io.*;
@@ -29,9 +34,17 @@ public class CodeSelection extends DefaultVisitor {
     //      return null;
     // }
 
-    // Método auxiliar recomendado (opcional) -------------
+    // Métodos auxiliares recomendados (opcionales) -------------
     private void out(String instruction) {
         writer.println(instruction);
+    }
+
+    private void line(Position pos) {
+        out("\n#line " + pos.getLine());
+    }
+
+    private void line(AST node) {
+        line(node.getEnd());
     }
 
     private PrintWriter writer;

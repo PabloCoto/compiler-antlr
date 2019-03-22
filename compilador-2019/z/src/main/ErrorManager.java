@@ -1,4 +1,5 @@
 /**
+ * Tutorial de Diseño de Lenguajes de Programación
  * @author Raúl Izquierdo
  */
 
@@ -13,6 +14,10 @@ public class ErrorManager {
         if (position != null)
             texto += "[" + position + "] ";
         notify(texto + msg);
+    }
+
+    public void notify(String fase, String msg) {
+        notify(fase, msg, null);
     }
 
     public void notify(String msg) {

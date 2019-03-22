@@ -65,14 +65,15 @@
 
 <tr><td><span class="nodo">return</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">asignacion</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">izq</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">der</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
+<tr><td><span class="nodo">printsp</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">print</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
+<tr><td><span class="nodo">println</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">read</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">bucleWhile</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">condicion</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">cuerpo</span><span class="tipoAtt">:sentencia*</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">sentenciaCondicional</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">condicion</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">cuerpoIf</span><span class="tipoAtt">:sentencia*</span> <span class="nombreAtt">cuerpoElse</span><span class="tipoAtt">:sentencia*</span></td><td></td><td></td></tr>
-<tr><td><span class="nodo">invocacionFuncion</span>:<span class="categoria">sentencia, expresion</span>&nbsp;&rarr;  <span class="nombreAtt">id</span><span class="tipoAtt">:String</span> <span class="nombreAtt">parametros</span><span class="tipoAtt">:expresion*</span></td><td></td><td></td></tr>
+<tr><td><span class="nodo">invocacionFuncionSentencia</span>:<span class="categoria">sentencia</span>&nbsp;&rarr;  <span class="nombreAtt">id</span><span class="tipoAtt">:String</span> <span class="nombreAtt">parametros</span><span class="tipoAtt">:expresion*</span></td><td></td><td></td></tr>
 <tr><td>&nbsp;</td><td></td><td></td></tr>
 
-<tr><td><span class="nodo">invocacionFuncion</span>:<span class="categoria">sentencia, expresion</span>&nbsp;&rarr;  <span class="nombreAtt">id</span><span class="tipoAtt">:String</span> <span class="nombreAtt">parametros</span><span class="tipoAtt">:expresion*</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">accesoStruct</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">accesoArray</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">posicion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">variable</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">ident</span><span class="tipoAtt">:String</span></td><td></td><td></td></tr>
@@ -83,6 +84,8 @@
 <tr><td><span class="nodo">negacion</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">expresion</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">expresionAritmetica</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">izquierda</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">operador</span><span class="tipoAtt">:String</span> <span class="nombreAtt">derecha</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
 <tr><td><span class="nodo">expresionBinaria</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">izquierda</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">operador</span><span class="tipoAtt">:String</span> <span class="nombreAtt">derecha</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
+<tr><td><span class="nodo">expresionLogica</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">izquierda</span><span class="tipoAtt">:expresion</span> <span class="nombreAtt">operador</span><span class="tipoAtt">:String</span> <span class="nombreAtt">derecha</span><span class="tipoAtt">:expresion</span></td><td></td><td></td></tr>
+<tr><td><span class="nodo">invocacionFuncionExpresion</span>:<span class="categoria">expresion</span>&nbsp;&rarr;  <span class="nombreAtt">id</span><span class="tipoAtt">:String</span> <span class="nombreAtt">parametros</span><span class="tipoAtt">:expresion*</span></td><td></td><td></td></tr>
 <tr><td>&nbsp;</td><td></td><td></td></tr>
 
 

@@ -1,3 +1,8 @@
+/**
+ * Tutorial de Diseño de Lenguajes de Programación
+ * @author Raúl Izquierdo
+ */
+
 package semantic;
 
 import main.*;
@@ -10,9 +15,6 @@ import ast.*;
  *
  * No es necesario modificar esta clase. En su lugar hay que modificar las clases
  * que son llamadas desde aquí: "Identification.java" y "TypeChecking.java"
- *
- * @author Raúl Izquierdo
- *
  */
 public class SemanticAnalisys {
 

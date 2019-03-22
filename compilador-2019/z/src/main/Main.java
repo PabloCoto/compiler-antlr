@@ -1,3 +1,8 @@
+/**
+ * Tutorial de Diseño de Lenguajes de Programación
+ * @author Raúl Izquierdo
+ */
+
 package main;
 
 import java.io.*;
@@ -20,9 +25,6 @@ import org.antlr.v4.runtime.*;
  * - Para Análisis Sintáctico: 'Grammar.g4'.
  * - Para Análisis Semántico: 'Identification.java' y 'TypeChecking.java'.
  * - Para Generación de Código: 'MemoryAllocation.java' y 'CodeSelection.java'.
- *
- * @author Raúl Izquierdo
- *
  */
 public class Main {
     public static final String program = "source.txt"; // Prueba a compilar durante el desarrollo

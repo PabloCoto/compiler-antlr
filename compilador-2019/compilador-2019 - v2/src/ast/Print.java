@@ -41,7 +41,8 @@ public class Print extends AbstractSentencia {
 	}
 
 	private Expresion expresion;
-
+	public DefFuncion funcionEnLaQueEstoy;
+	
 	public String toString() {
        return "{expresion:" + getExpresion() + "}";
    }

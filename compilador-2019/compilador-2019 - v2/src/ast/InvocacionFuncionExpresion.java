@@ -62,4 +62,8 @@ public class InvocacionFuncionExpresion extends AbstractExpresion {
 	public void setDefinicion(DefFuncion funcion) {
 		this.definicion = funcion;
 	}
+	
+	public DefFuncion getDefinicion() {
+		return this.definicion;
+	}
 }

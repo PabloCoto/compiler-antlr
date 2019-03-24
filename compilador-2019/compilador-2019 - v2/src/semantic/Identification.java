@@ -51,7 +51,7 @@ public class Identification extends DefaultVisitor {
 
 		estructuras.put(node.getIdent(), node);
 
-		return super.visit(node, param);
+		return null;
 	}
 
 	// class DefFuncion { String ident; List<Param> parametrosFuncion; Tipo tipo;
@@ -84,6 +84,14 @@ public class Identification extends DefaultVisitor {
 		return null;
 	}
 
+	//	class InvocacionFuncionSentencia { String id;  List<Expresion> parametros; }
+	public Object visit(InvocacionFuncionSentencia node, Object param) {
+		DefFuncion funcion = funciones.get(node.getId());
+		predicado(funcion != null, "Procedimiento no definido: " + node.getId(), node);
+		node.setDefinicion(funcion); // Enlazar referencia con definicion
+		return null;
+	}
+	
 	// class Variable { String ident; }
 	public Object visit(Variable node, Object param) {
 		DefVariable definicion = variables.getFromAny(node.getIdent());

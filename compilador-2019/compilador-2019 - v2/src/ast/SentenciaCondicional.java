@@ -63,6 +63,7 @@ public class SentenciaCondicional extends AbstractSentencia {
 	private Expresion condicion;
 	private List<Sentencia> cuerpoIf;
 	private List<Sentencia> cuerpoElse;
+	public DefFuncion funcionEnLaQueEstoy;
 
 	public String toString() {
        return "{condicion:" + getCondicion() + ", cuerpoIf:" + getCuerpoIf() + ", cuerpoElse:" + getCuerpoElse() + "}";

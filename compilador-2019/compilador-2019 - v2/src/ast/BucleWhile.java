@@ -53,6 +53,7 @@ public class BucleWhile extends AbstractSentencia {
 
 	private Expresion condicion;
 	private List<Sentencia> cuerpo;
+	public DefFuncion funcionEnLaQueEstoy;
 
 	public String toString() {
        return "{condicion:" + getCondicion() + ", cuerpo:" + getCuerpo() + "}";

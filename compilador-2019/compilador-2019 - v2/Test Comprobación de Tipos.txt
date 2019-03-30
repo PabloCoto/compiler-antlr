@@ -87,7 +87,7 @@ main() {
 	print 2.5 < 2;		// Deben ser del mismo tipo
 	print i == 2;
 	
-	print cast<int>(2.5) + i;
+	print cast<int>(2.5) + i; //ERROR??? suma de mismo tipo
 	print cast<Persona>(2.5);	// Tipos simples
 	print cast<int>(juan);		// Expresiones de tipos simples
 	print cast<float>(2.5);		// Deben ser distintos tipos

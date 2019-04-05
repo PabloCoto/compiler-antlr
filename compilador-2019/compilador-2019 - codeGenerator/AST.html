@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css">
+.value { font-weight: bold; }
+.dots { color: #bebdbd; }
+.type { color: #BBBBBB; }
+.pos { color: #CCCCCC; }
+.sourceText { color: #BBBBBB; }
+.posText {
+	color: #BBBBBB;
+	text-decoration: underline; font-weight: bold;
+}
+.null {
+	color: #FF0000;
+	font-weight: bold;
+	font-style: italic;
+}
+</style>
+</head>
+
+<body><pre>
+[ASTPrinter] -------------------------------- line:col  line:col
+
+<span class="dots"></span>Programa &rarr;                                                  <span class="pos">1:5  9:8     </span><span class="sourceText">var </span><span class="posText">a:int;</span><span class="sourceText"> ... </span><span class="posText">print a</span><span class="sourceText">;		// 1111</span>
+<span class="dots">.  </span>definicion  <span class="type">List&lt;Definicion&gt;</span> = 
+<span class="dots">.  .  </span>DefVariable &rarr;                                         <span class="pos">1:5  1:9     </span><span class="sourceText">var </span><span class="posText">a:int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  </span>"<span class="value">a</span>"  
+<span class="dots">.  .  |  </span><span class="value">TipoEntero</span> &rarr;                                       <span class="pos">1:7  1:9     </span><span class="sourceText">var a:</span><span class="posText">int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  </span><span class="value">0</span>  <span class="type">int</span>
+<span class="dots">.  .  </span>DefVariable &rarr;                                         <span class="pos">2:5  2:11    </span><span class="sourceText">var </span><span class="posText">b:float</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  </span>"<span class="value">b</span>"  
+<span class="dots">.  .  |  </span><span class="value">TipoReal</span> &rarr;                                         <span class="pos">2:7  2:11    </span><span class="sourceText">var b:</span><span class="posText">float</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  </span><span class="value">2</span>  <span class="type">int</span>
+<span class="dots">.  .  </span>DefFuncion &rarr;                                          <span class="pos">5:1  9:8     </span><span class="sourceText"></span><span class="posText">main() {</span><span class="sourceText"> ... </span><span class="posText">print a</span><span class="sourceText">;		// 1111</span>
+<span class="dots">.  .  |  </span>"<span class="value">main</span>"  
+<span class="dots">.  .  |  </span>parametrosFuncion  <span class="type">List&lt;DefVariable&gt;</span> = 
+<span class="dots">.  .  |  </span><span class="value">TipoVoid</span> &rarr;                                         <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>definiciones  <span class="type">List&lt;DefVariable&gt;</span> = 
+<span class="dots">.  .  |  </span>sentencias  <span class="type">List&lt;Sentencia&gt;</span> = 
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">6:2  6:9     </span><span class="sourceText"></span><span class="posText">a = 1111</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"a"  <span class="type">Variable.ident</span>                          <span class="pos">6:2  6:2     </span><span class="sourceText"></span><span class="posText">a</span><span class="sourceText"> = 1111;</span>
+<span class="dots">.  .  |  .  |  </span>"1111"  <span class="type">LiteralInt.value</span>                     <span class="pos">6:6  6:9     </span><span class="sourceText">a = </span><span class="posText">1111</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Print &rarr;                                         <span class="pos">9:8  9:8     </span><span class="sourceText">print </span><span class="posText">a</span><span class="sourceText">;		// 1111</span>
+<span class="dots">.  .  |  .  |  </span>"a"  <span class="type">Variable.ident</span>                          <span class="pos">9:8  9:8     </span><span class="sourceText">print </span><span class="posText">a</span><span class="sourceText">;		// 1111</span>
+
+[ASTPrinter] --------------------------------
+</pre>
+</body>
+</html>

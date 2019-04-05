@@ -211,7 +211,7 @@ public class TypeChecking extends DefaultVisitor {
 					break;
 				}
 			}
-			predicado(i==true, "TipoStruct: El campo al que se hace referencia no existe en la estructura " + defS.getIdent(),
+			predicado(i==false, "TipoStruct: El campo al que se hace referencia no existe en la estructura " + defS.getIdent(),
 					node);
 		}
 

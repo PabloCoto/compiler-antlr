@@ -1,0 +1,10 @@
+var a:int;
+var b:float;
+
+
+main() {
+	a = 1111;
+
+		
+	print a;		// 1111
+}

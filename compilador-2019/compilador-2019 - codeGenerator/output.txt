@@ -1,33 +1,74 @@
 #source "Test de Generación de Código básico.txt"
-#line 14
+call main
+halt
 #GLOBAL a:int
-#line 15
 #GLOBAL b:float
-#line 22
+#TYPE Punto:{
+
+	x:float
+
+	y:float
+
+}
 #GLOBAL v:5 * int
-#line 23
 #GLOBAL p:Punto
-#line 26
+#FUNC main
+#RET VOID
+main:
+pusha 0
 push 1111
-STOREi
-#line 27
-STOREf
-#line 28
+storei
+pusha 2
+pushf 2222.2
+storef
+pusha 6
 push 3
+push 2
+mul
+add
 push 3333
-STOREi
-#line 29
-STOREf
+storei
+pusha 16
+push 4
+add
+pushf 4444.4
+storef
 #line 31
+pusha 0
+loadi
 outi
 #line 32
+pusha 2
+loadf
+pusha 16
+push 4
+add
+loadf
+addf
 outf
 #line 33
+pusha 6
 push 3
+push 2
+mul
+add
+loadi
 outi
 #line 35
+pusha 0
+loadi
 push 0
+gti
+pusha 2
+loadf
+pushf 3333.3
+ltf
+and
 outi
 #line 36
+pusha 2
+loadf
+f2i
 outi
-halt
+enter 0
+ret 0,0,0

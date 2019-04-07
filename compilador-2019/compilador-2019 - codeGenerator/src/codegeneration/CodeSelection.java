@@ -23,8 +23,8 @@ public class CodeSelection extends DefaultVisitor {
 		instruccion.put("/", "div");
 		instruccion.put("<", "lt");
 		instruccion.put(">", "gt");
-		instruccion.put("AND", "and");
-		instruccion.put("OR", "or");
+		instruccion.put("&&", "and");
+		instruccion.put("||", "or");
 		instruccion.put("==", "eq");
 		instruccion.put("!=", "ne");
 		instruccion.put(">=", "ge");
@@ -34,14 +34,14 @@ public class CodeSelection extends DefaultVisitor {
 //	class Programa { List<Definicion> definicion; }
 	public Object visit(Programa node, Object param) {
 		out("#source \"" + sourceFile + "\"");
-		visitChildren(node.getDefinicion(), param);
+		out("call main");
 		out("halt");
+		visitChildren(node.getDefinicion(), param);
 		return null;
 	}
 
 //	class DefVariable { String ident;  Tipo tipo; }
 	public Object visit(DefVariable node, Object param) {
-		out("#line " + node.getEnd().getLine());
 		if (node.getAmbito() == AmbitoVariable.GLOBAL) {
 			out("#GLOBAL " + node.getIdent() + ":" + node.getTipo().getMAPLName());
 		}
@@ -50,7 +50,39 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class DefFuncion { String ident;  List<DefVariable> parametrosFuncion;  Tipo tipo;  List<DefVariable> definiciones;  List<Sentencia> sentencias; }
 	public Object visit(DefFuncion node, Object param) {
-		visitChildren(node.getSentencias(), param);
+		out("#FUNC " + node.getIdent());
+		int entercount = 0;
+		int paramscount = 0;
+		for (DefVariable parameter : node.getParametrosFuncion()) {
+			out("#PARAM " + parameter.getIdent() + ":" + parameter.getTipo().getMAPLName());
+			paramscount += parameter.getTipo().getSize();
+		}
+		out("#RET " + ((node.getTipo().getClass() == TipoVoid.class) ? "VOID" : node.getTipo().getMAPLName()));
+		for (DefVariable locales : node.getDefiniciones()) {
+			out("#LOCAL " + locales.getIdent() + ":" + locales.getTipo().getMAPLName());
+			entercount += locales.getTipo().getSize();
+		}
+		out(node.getIdent() + ":");
+		
+		super.visit(node, param);
+		out("enter " + entercount);
+		if (node.getTipo().getClass() == TipoVoid.class) {
+			out("ret " + 0 + "," + entercount + "," + paramscount);
+		}
+		return null;
+	}
+
+//	class DefStruct { String ident;  List<CuerpoStruct> cuerpostruct; }
+	public Object visit(DefStruct node, Object param) {
+		out("#TYPE " + node.getIdent() + ":{");
+		visitChildren(node.getCuerpostruct(), param);
+		out("\n}");
+		return null;
+	}
+
+	// class CuerpoStruct { String ident; Tipo tipo; }
+	public Object visit(CuerpoStruct node, Object param) {
+		out("\n\t" + node.getIdent() + ":" + node.getTipo().getMAPLName());
 		return null;
 	}
 
@@ -103,7 +135,6 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class Read { Expresion expresion; }
 	public Object visit(Read node, Object param) {
-		out("#line " + node.getEnd().getLine());
 		node.getExpresion().accept(this, CodeFunction.ADDRESS);
 		out("in", node.getExpresion().getTipo());
 		out("store", node.getExpresion().getTipo());
@@ -114,7 +145,6 @@ public class CodeSelection extends DefaultVisitor {
 	public Object visit(BucleWhile node, Object param) {
 		numEtiquetaWhile++;
 		int numBucleWhile = numEtiquetaWhile;
-		out("#line " + node.getEnd().getLine());
 		out("bucleWhile" + numBucleWhile + ":");
 		node.getCondicion().accept(this, CodeFunction.VALUE);
 		out("jz finBucleWhile" + numBucleWhile);
@@ -128,7 +158,6 @@ public class CodeSelection extends DefaultVisitor {
 	public Object visit(SentenciaCondicional node, Object param) {
 		numEtiquetaIf++;
 		int numIf = numEtiquetaIf;
-		out("#line " + node.getEnd().getLine());
 		out("sentenciaIf" + numIf + ":");
 		node.getCondicion().accept(this, CodeFunction.VALUE);
 		out("jz sentenciaElse" + numIf);
@@ -142,7 +171,6 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class InvocacionFuncionSentencia { String id;  List<Expresion> parametros; }
 	public Object visit(InvocacionFuncionSentencia node, Object param) {
-		out("#line " + node.getEnd().getLine());
 		super.visit(node, CodeFunction.VALUE); // hace el visitChildre de los parametros
 		out("call " + node.getId());
 		if (node.funcionEnLaQueEstoy.getTipo().getClass() != TipoVoid.class) {
@@ -153,7 +181,6 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class AccesoStruct { Expresion expresion;  String ident; }
 	public Object visit(AccesoStruct node, Object param) {
-		out("#line " + node.getEnd().getLine());
 		super.visit(node, CodeFunction.ADDRESS);
 		if (node.getExpresion().getTipo().getClass() == TipoStruct.class) {
 			DefStruct defstruct = ((TipoStruct) node.getExpresion().getTipo()).getDefinicion();
@@ -166,7 +193,7 @@ public class CodeSelection extends DefaultVisitor {
 				}
 			}
 			if (param == CodeFunction.VALUE) {
-				out("load" + node.getTipo());
+				out("load" + node.getTipo().getSuffix());
 			}
 		}
 		return null;
@@ -174,24 +201,22 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class AccesoArray { Expresion ident;  Expresion posicion; }
 	public Object visit(AccesoArray node, Object param) {
-		out("#line " + node.getEnd().getLine());
 		node.getIdent().accept(this, CodeFunction.ADDRESS);
 		node.getPosicion().accept(this, CodeFunction.VALUE);
-		out("push " + node.getIdent().getTipo().getSize());
+		out("push " + ((TipoArray)node.getIdent().getTipo()).getTipo().getSize());
 		out("mul");
 		out("add");
 		if (param == CodeFunction.VALUE) {
-			out("load" + node.getTipo());
+			out("load" + node.getTipo().getSuffix());
 		}
 		return null;
 	}
 
 //	class Variable { String ident; }
 	public Object visit(Variable node, Object param) {
-		out("#line " + node.getEnd().getLine());
-		if (param == CodeFunction.VALUE) {
+		if (((CodeFunction)param) == CodeFunction.VALUE) {
 			visit(node, CodeFunction.ADDRESS);
-			out("load" + node.getDefinicion().getTipo());
+			out("load" + node.getTipo().getSuffix());
 		} else {
 			assert (param == CodeFunction.ADDRESS);
 			if (node.getDefinicion().getAmbito() == AmbitoVariable.GLOBAL) {
@@ -229,7 +254,6 @@ public class CodeSelection extends DefaultVisitor {
 //	class Cast { Tipo tipo;  Expresion expresion; }
 	public Object visit(Cast node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("#line " + node.getEnd().getLine());
 		node.getExpresion().accept(this, CodeFunction.VALUE);
 		out(node.getExpresion().getTipo().getSuffix() + "2" + node.getTipo().getSuffix());
 		return null;
@@ -238,57 +262,51 @@ public class CodeSelection extends DefaultVisitor {
 //	class Negacion { Expresion expresion; }
 	public Object visit(Negacion node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("#line " + node.getEnd().getLine());
 		node.getExpresion().accept(this, CodeFunction.VALUE);
 		out("not");
 		return null;
 	}
-	
+
 //	class ExpresionAritmetica { Expresion izquierda;  String operador;  Expresion derecha; }
 	public Object visit(ExpresionAritmetica node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("#line " + node.getEnd().getLine());
 		node.getIzquierda().accept(this, CodeFunction.VALUE);
 		node.getDerecha().accept(this, CodeFunction.VALUE);
-		out(node.getOperador() + node.getDerecha().getTipo());
+		out(instruccion.get(node.getOperador()), node.getDerecha().getTipo());
 		return null;
 	}
-	
+
 //	class ExpresionBinaria { Expresion izquierda;  String operador;  Expresion derecha; }
 	public Object visit(ExpresionBinaria node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("#line " + node.getEnd().getLine());
 		node.getIzquierda().accept(this, CodeFunction.VALUE);
 		node.getDerecha().accept(this, CodeFunction.VALUE);
-		out(node.getOperador() + node.getDerecha().getTipo());
+		out(instruccion.get(node.getOperador()) + node.getDerecha().getTipo().getSuffix());
 		return null;
 	}
-	
+
 //	class ExpresionLogica { Expresion izquierda;  String operador;  Expresion derecha; }
 	public Object visit(ExpresionLogica node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("#line " + node.getEnd().getLine());
 		node.getIzquierda().accept(this, CodeFunction.VALUE);
 		node.getDerecha().accept(this, CodeFunction.VALUE);
-		out(node.getOperador());
+		out(instruccion.get(node.getOperador()));
 		return null;
 	}
-	
+
 //	class InvocacionFuncionExpresion { String id;  List<Expresion> parametros; }
 	public Object visit(InvocacionFuncionExpresion node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("#line " + node.getEnd().getLine());
-		super.visit(node, CodeFunction.VALUE); //llama a los parametros de la invocacion
+		super.visit(node, CodeFunction.VALUE); // llama a los parametros de la invocacion
 		out("call " + node.getId());
 		return null;
 	}
 
 //	class Asignacion { Expresion izq;  Expresion der; }
 	public Object visit(Asignacion node, Object param) {
-		out("#line " + node.getEnd().getLine());
 		node.getIzq().accept(this, CodeFunction.ADDRESS);
 		node.getDer().accept(this, CodeFunction.VALUE);
-		out("STORE", node.getIzq().getTipo());
+		out("store", node.getIzq().getTipo());
 		return null;
 	}
 

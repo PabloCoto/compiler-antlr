@@ -1,5 +1,33 @@
-#source "pruebaCodeGeneration.txt"
+#source "Test de Generación de Código básico.txt"
+#line 14
+#GLOBAL a:int
+#line 15
+#GLOBAL b:float
+#line 22
+#GLOBAL v:5 * int
+#line 23
+#GLOBAL p:Punto
+#line 26
 push 1111
-#line 9
+STOREi
+#line 27
+STOREf
+#line 28
+push 3
+push 3333
+STOREi
+#line 29
+STOREf
+#line 31
+outi
+#line 32
+outf
+#line 33
+push 3
+outi
+#line 35
+push 0
+outi
+#line 36
 outi
 halt

@@ -1,6 +1,3 @@
-/ast/
 /codegeneration/
 /main/
-/parser/
 /semantic/
-/visitor/

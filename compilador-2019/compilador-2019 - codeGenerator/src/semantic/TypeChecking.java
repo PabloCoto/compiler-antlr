@@ -258,7 +258,7 @@ public class TypeChecking extends DefaultVisitor {
 	// class Negacion { Expresion expresion; }
 	public Object visit(Negacion node, Object param) {
 		super.visit(node, param);
-		predicado(node.getTipo().getClass() == TipoEntero.class, "Negacion: deben ser tipos simples", node.getStart());
+		predicado(node.getExpresion().getTipo().getClass() == TipoEntero.class, "Negacion: deben ser tipos simples", node.getStart());
 		node.setTipo(new TipoEntero());
 		node.setModificable(false);
 		return null;
@@ -271,7 +271,7 @@ public class TypeChecking extends DefaultVisitor {
 		predicado(node.getIzquierda().getTipo().getClass() == node.getDerecha().getTipo().getClass(),
 				"ExpresionAritmetica: Deben ser del mismo tipo", node.getStart());
 		predicado(node.getIzquierda().getTipo().getClass() == TipoReal.class || node.getIzquierda().getTipo().getClass() == TipoEntero.class,
-				"ExpresionAritmetica: deben ser tipos simples", node.getStart()); // char?
+				"ExpresionAritmetica: deben ser tipos real o entero", node.getStart()); 
 		node.setTipo(node.getIzquierda().getTipo());
 		node.setModificable(false);
 		return null;
@@ -282,10 +282,10 @@ public class TypeChecking extends DefaultVisitor {
 	public Object visit(ExpresionBinaria node, Object param) {
 		super.visit(node, param);
 		predicado(node.getIzquierda().getTipo().getClass() == TipoReal.class || node.getIzquierda().getTipo().getClass() == TipoEntero.class,
-				"ExpresionBinaria: deben ser tipos simples", node.getStart()); // char?
+				"ExpresionBinaria: deben ser tipos real o entero", node.getStart()); 
 		predicado(node.getIzquierda().getTipo().getClass() == node.getDerecha().getTipo().getClass(),
-				"ExpresionAritmetica: Deben ser del mismo tipo", node.getStart());
-		node.setTipo(node.getIzquierda().getTipo());
+				"ExpresionBinaria: Deben ser del mismo tipo", node.getStart());
+		node.setTipo(new TipoEntero());
 		node.setModificable(false);
 		return null;
 	}
@@ -294,11 +294,11 @@ public class TypeChecking extends DefaultVisitor {
 	// derecha; }
 	public Object visit(ExpresionLogica node, Object param) {
 		super.visit(node, param);
-		predicado(node.getIzquierda().getTipo().getClass() == TipoEntero.class, "ExpresionLogica: deben ser tipos simples",
+		predicado(node.getIzquierda().getTipo().getClass() == TipoEntero.class, "ExpresionLogica: deben ser tipo entero",
 				node.getStart()); // char?
 		predicado(node.getIzquierda().getTipo().getClass() == node.getDerecha().getTipo().getClass(),
 				"ExpresionLogica: Deben ser del mismo tipo", node.getStart());
-		node.setTipo(node.getIzquierda().getTipo());
+		node.setTipo(new TipoEntero());
 		node.setModificable(false);
 		return null;
 	}

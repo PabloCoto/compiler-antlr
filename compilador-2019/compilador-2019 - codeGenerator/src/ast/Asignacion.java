@@ -51,7 +51,6 @@ public class Asignacion extends AbstractSentencia {
 
 	private Expresion izq;
 	private Expresion der;
-	public DefFuncion funcionEnLaQueEstoy;
 	
 	public String toString() {
        return "{izq:" + getIzq() + ", der:" + getDer() + "}";

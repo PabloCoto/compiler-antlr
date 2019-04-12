@@ -17,16 +17,16 @@ import codegeneration.*;
  *
  * Normalmente, no es necesario modificar este fichero. En su lugar, modificar
  * los ficheros de cada fase (que son llamados desde aquí):
- * - Para Análisis Léxico: 'Lexico.g4'.
+ * - Para Análisis Léxico: 'Lexico.g4'. 
  * - Para Análisis Sintáctico: 'Grammar.g4'.
  * - Para Análisis Semántico: 'Identification.java' y 'TypeChecking.java'.
  * - Para Generación de Código: 'MemoryAllocation.java' y 'CodeSelection.java'.
  *
- * @author Raúl Izquierdo
+ * @author Raúl Izquierdo 
  *
  */
 public class Main {
-    public static final String program = "Test de Generaci�n de C�digo b�sico.txt"; // Prueba a compilar durante el desarrollo
+    public static final String program = "Test Generaci�n de C�digo 2.txt"; // Prueba a compilar durante el desarrollo
 
     public static void main(String[] args) throws Exception {
         ErrorManager errorManager = new ErrorManager();

@@ -150,7 +150,7 @@ public class CodeSelection extends DefaultVisitor {
 		out("jz finBucleWhile" + numBucleWhile);
 		visitChildren(node.getCuerpo(), param);
 		out("jmp bucleWhile" + numBucleWhile);
-		out("finBucleWhile" + numBucleWhile);
+		out("finBucleWhile" + numBucleWhile + ":");
 		return null;
 	}
 
@@ -165,16 +165,16 @@ public class CodeSelection extends DefaultVisitor {
 		out("jmp finSentenciaIf" + numIf);
 		out("sentenciaElse" + numIf + ":");
 		visitChildren(node.getCuerpoElse(), param);
-		out("finSentenciaIf" + numIf);
+		out("finSentenciaIf" + numIf + ":");
 		return null;
 	}
 
 //	class InvocacionFuncionSentencia { String id;  List<Expresion> parametros; }
 	public Object visit(InvocacionFuncionSentencia node, Object param) {
 		super.visit(node, CodeFunction.VALUE); // hace el visitChildre de los parametros
-		out("call " + node.getId());
-		if (node.funcionEnLaQueEstoy.getTipo().getClass() != TipoVoid.class) {
-			out("pop" + node.funcionEnLaQueEstoy.getTipo());
+		out("call " + node.getId()); 
+		if (node.getFuncionEnLaQueEstoy().getTipo().getClass() != TipoVoid.class) {
+			out("pop" + node.getFuncionEnLaQueEstoy().getTipo().getSuffix());
 		}
 		return null;
 	}
@@ -247,7 +247,7 @@ public class CodeSelection extends DefaultVisitor {
 	// class LiteralChar { String value; }
 	public Object visit(LiteralChar node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("pushb " + node.getValue());
+		out("pushb " + (int)node.getValue().charAt(0));
 		return null;
 	}
 

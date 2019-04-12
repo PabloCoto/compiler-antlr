@@ -192,8 +192,8 @@ public class TypeChecking extends DefaultVisitor {
 
 	// class Variable { String ident; }
 	public Object visit(Variable node, Object param) {
-		super.visit(node, param);	
-		node.setTipo(node.getDefinicion().getTipo());
+//		super.visit(node, param);	
+ 		node.setTipo(node.getDefinicion().getTipo());
 		node.setModificable(true);
 		if (node.getTipo().getClass() == TipoStruct.class) {
 			TipoStruct struct = (TipoStruct) node.getTipo();
@@ -207,7 +207,7 @@ public class TypeChecking extends DefaultVisitor {
 						node.setTipo(((TipoArray) tipo).getTipo());
 					} else
 						node.setTipo(dC.getTipo());
-
+ 
 					break;
 				}
 			}

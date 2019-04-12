@@ -41,15 +41,6 @@ public class Return extends AbstractSentencia {
 	}
 
 	private Expresion expresion;
-	public DefFuncion funcionEnLaQueEstoy;
-
-	public DefFuncion getFuncionEnLaQueEstoy() {
-		return funcionEnLaQueEstoy;
-	}
-
-	public void setFuncionEnLaQueEstoy(DefFuncion funcionEnLaQueEstoy) {
-		this.funcionEnLaQueEstoy = funcionEnLaQueEstoy;
-	}
 
 	public String toString() {
        return "{expresion:" + getExpresion() + "}";

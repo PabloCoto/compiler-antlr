@@ -1,74 +1,240 @@
-#source "Test de Generación de Código básico.txt"
+#source "Test Generación de Código 2.txt"
 call main
 halt
-#GLOBAL a:int
-#GLOBAL b:float
-#TYPE Punto:{
+#TYPE Persona:{
 
-	x:float
+	inicial:char
 
-	y:float
+	sueldo:float
 
 }
-#GLOBAL v:5 * int
-#GLOBAL p:Punto
-#FUNC main
+#GLOBAL empresa:4 * Persona
+#FUNC inicia
 #RET VOID
-main:
-pusha 0
-push 1111
+#LOCAL i:int
+inicia:
+push BP
+push -2
+add
+push 0
 storei
-pusha 2
-pushf 2222.2
-storef
-pusha 6
-push 3
-push 2
-mul
-add
-push 3333
-storei
-pusha 16
-push 4
-add
-pushf 4444.4
-storef
-#line 31
-pusha 0
-loadi
-outi
-#line 32
-pusha 2
-loadf
-pusha 16
-push 4
-add
-loadf
-addf
-outf
-#line 33
-pusha 6
-push 3
-push 2
-mul
+bucleWhile1:
+push BP
+push -2
 add
 loadi
-outi
-#line 35
+push 4
+lti
+jz finBucleWhile1
 pusha 0
+push BP
+push -2
+add
+loadi
+push 5
+mul
+add
+push 0
+add
+push BP
+push -2
+add
+loadi
+pushb 39
+b2i
+addi
+i2b
+storeb
+pusha 0
+push BP
+push -2
+add
+loadi
+push 5
+mul
+add
+push 1
+add
+push 1000
+push BP
+push -2
+add
+loadi
+push 100
+muli
+addi
+i2f
+storef
+push BP
+push -2
+add
+push BP
+push -2
+add
+loadi
+push 1
+addi
+storei
+jmp bucleWhile1
+finBucleWhile1:
+enter 2
+ret 0,2,0
+#FUNC busca
+#PARAM i:int
+#RET VOID
+busca:
+sentenciaIf1:
+push BP
+push 4
+add
 loadi
 push 0
-gti
-pusha 2
+lti
+push BP
+push 4
+add
+loadi
+push 4
+gei
+or
+jz sentenciaElse1
+#line 46
+ret 0,0,2
+jmp finSentenciaIf1
+sentenciaElse1:
+finSentenciaIf1:
+#line 48
+pusha 0
+push BP
+push 4
+add
+loadi
+push 5
+mul
+add
+push 0
+add
+loadb
+outb
+#line 49
+pusha 0
+push BP
+push 4
+add
+loadi
+push 5
+mul
+add
+push 1
+add
 loadf
-pushf 3333.3
-ltf
-and
-outi
-#line 36
-pusha 2
-loadf
-f2i
-outi
+outf
 enter 0
-ret 0,0,0
+ret 0,0,2
+#FUNC imprime
+#RET int
+#LOCAL i:int
+#LOCAL aux:Persona
+imprime:
+push BP
+push -2
+add
+push 0
+storei
+bucleWhile2:
+push BP
+push -2
+add
+loadi
+push 4
+gei
+not
+jz finBucleWhile2
+push BP
+push -7
+add
+push 0
+add
+pusha 0
+push BP
+push -2
+add
+loadi
+push 5
+mul
+add
+push 0
+add
+loadb
+storeb
+push BP
+push -7
+add
+push 1
+add
+pusha 0
+push BP
+push -2
+add
+loadi
+push 5
+mul
+add
+push 1
+add
+loadf
+storef
+#line 61
+push BP
+push -7
+add
+push 0
+add
+loadb
+outb
+#line 62
+push BP
+push -7
+add
+push 1
+add
+loadf
+outf
+push BP
+push -2
+add
+push BP
+push -2
+add
+loadi
+push 1
+addi
+storei
+jmp bucleWhile2
+finBucleWhile2:
+#line 66
+push BP
+push -2
+add
+loadi
+ret 2,7,0
+enter 7
+#FUNC main
+#RET VOID
+#LOCAL posicion:int
+main:
+call inicia
+push BP
+push -2
+add
+ini
+storei
+push BP
+push -2
+add
+loadi
+call busca
+call imprime
+popi
+enter 2
+ret 0,2,0

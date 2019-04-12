@@ -6,4 +6,14 @@ package ast;
 
 public abstract class AbstractSentencia extends AbstractAST implements Sentencia {
 
+	public DefFuncion funcionEnLaQueEstoy;
+	
+	public DefFuncion getFuncionEnLaQueEstoy() {
+		return this.funcionEnLaQueEstoy;
+	}
+
+	public void setFuncionEnLaQueEstoy(DefFuncion funcionEnLaQueEstoy) {
+		this.funcionEnLaQueEstoy = funcionEnLaQueEstoy;
+	}
+
 }

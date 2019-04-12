@@ -54,7 +54,6 @@ public class InvocacionFuncionSentencia extends AbstractSentencia {
 	private String id;
 	private List<Expresion> parametros;
 	private DefFuncion definicion;
-	public DefFuncion funcionEnLaQueEstoy;
 	
 	public String toString() {
        return "{id:" + getId() + ", parametros:" + getParametros() + "}";

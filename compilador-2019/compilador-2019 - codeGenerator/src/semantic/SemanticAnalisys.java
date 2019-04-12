@@ -22,7 +22,7 @@ public class SemanticAnalisys {
 
     public void analize(AST ast) {
         Identification identification = new Identification(errorManager);
-        ast.accept(identification, null);
+        ast.accept(identification, null); 
 
         if (errorManager.errorsCount() > 0)
             return;

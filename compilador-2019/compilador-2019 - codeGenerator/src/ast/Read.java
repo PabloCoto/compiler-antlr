@@ -41,7 +41,6 @@ public class Read extends AbstractSentencia {
 	}
 
 	private Expresion expresion;
-	public DefFuncion funcionEnLaQueEstoy;
 
 	public String toString() {
        return "{expresion:" + getExpresion() + "}";

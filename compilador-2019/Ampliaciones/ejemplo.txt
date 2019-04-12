@@ -1,0 +1,8 @@
+main(){
+	var a:int;
+	var b:int;
+	
+	//b = 5;
+	
+	a=  b > 3 ? 1 : 2;
+}

@@ -16,7 +16,7 @@ public class Variable extends AbstractExpresion {
 		this.ident = ident;
 	}
 
-	public Variable(Object ident) {
+	public Variable(Object ident) { 
 		this.ident = (ident instanceof Token) ? ((Token)ident).getText() : (String) ident;
 
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.

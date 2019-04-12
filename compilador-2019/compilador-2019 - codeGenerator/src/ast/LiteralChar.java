@@ -22,7 +22,7 @@ public class LiteralChar extends AbstractExpresion {
        // Lo siguiente se puede borrar si no se quiere la posicion en el fichero.
        // Obtiene la linea/columna a partir de las de los hijos.
        setPositions(value);
-	}
+	} 
 
 	public String getValue() {
 		return value;

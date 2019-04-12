@@ -74,9 +74,22 @@ public class Identification extends DefaultVisitor {
 		return super.visit(node, param);
 	}
 	
+//	class BucleWhile { Expresion condicion;  List<Sentencia> cuerpo; }
+	public Object visit(BucleWhile node, Object param) {
+		node.setFuncionEnLaQueEstoy((DefFuncion)param); 
+		return super.visit(node, param);
+	}
+
+	//	class SentenciaCondicional { Expresion condicion;  List<Sentencia> cuerpoIf;  List<Sentencia> cuerpoElse; }
+	public Object visit(SentenciaCondicional node, Object param) {
+		node.setFuncionEnLaQueEstoy((DefFuncion)param); 
+		return super.visit(node, param);
+	}
+
+	
 	// class TipoStruct { String ident; }
 	public Object visit(TipoStruct node, Object param) {
-		DefStruct definicion = estructuras.get(node.getIdent());
+		DefStruct definicion = estructuras.get(node.getIdent()); 
 		predicado(definicion != null, "Estructura no definida: " + node.getIdent(), node.getStart());
 		node.setDefinicion(definicion); // Enlazar referencia con definicion
 		return super.visit(node, param);
@@ -95,6 +108,7 @@ public class Identification extends DefaultVisitor {
 		DefFuncion funcion = funciones.get(node.getId());
 		predicado(funcion != null, "Procedimiento no definido: " + node.getId(), node);
 		node.setDefinicion(funcion); // Enlazar referencia con definicion
+		node.setFuncionEnLaQueEstoy((DefFuncion)funcion);
 		return super.visit(node, param);
 	}
 	

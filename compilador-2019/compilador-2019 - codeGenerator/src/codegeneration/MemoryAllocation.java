@@ -22,10 +22,7 @@ public class MemoryAllocation extends DefaultVisitor {
 				if (var.getAmbito() == AmbitoVariable.GLOBAL) {
 					var.setAddress(dirGlobales);
 					dirGlobales += var.getTipo().getSize();
-				} else if (var.getAmbito() == AmbitoVariable.LOCAL) {
-					dirLocales += -var.getTipo().getSize();
-					var.setAddress(dirLocales);
-				}
+				} 
 			} else if (child instanceof DefFuncion) {
 				DefFuncion fun = ((DefFuncion) child);
 				dirLocales = 0;

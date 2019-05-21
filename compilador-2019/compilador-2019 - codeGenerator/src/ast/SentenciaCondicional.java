@@ -67,4 +67,17 @@ public class SentenciaCondicional extends AbstractSentencia {
 	public String toString() {
        return "{condicion:" + getCondicion() + ", cuerpoIf:" + getCuerpoIf() + ", cuerpoElse:" + getCuerpoElse() + "}";
    }
+	
+	@Override
+	public boolean isFinFuncion() {
+		
+		if (cuerpoIf.isEmpty() || !cuerpoIf.get(cuerpoIf.size()-1).isFinFuncion()) {
+			return false;
+		}
+		if (cuerpoElse.isEmpty() || !cuerpoElse.get(cuerpoElse.size()-1).isFinFuncion()) {
+			return false;
+		}
+		
+		return true;
+	}
 }

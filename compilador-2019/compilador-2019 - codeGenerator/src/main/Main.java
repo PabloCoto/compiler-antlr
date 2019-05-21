@@ -26,7 +26,7 @@ import codegeneration.*;
  *
  */
 public class Main {
-    public static final String program = "Test Generación de Código 2.txt"; // Prueba a compilar durante el desarrollo
+    public static final String program = "pruebaCodeGeneration.txt"; // Prueba a compilar durante el desarrollo
 
     public static void main(String[] args) throws Exception {
         ErrorManager errorManager = new ErrorManager();

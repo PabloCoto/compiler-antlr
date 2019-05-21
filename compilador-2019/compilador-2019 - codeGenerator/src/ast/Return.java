@@ -45,4 +45,9 @@ public class Return extends AbstractSentencia {
 	public String toString() {
        return "{expresion:" + getExpresion() + "}";
    }
+	
+	@Override
+	public boolean isFinFuncion() {
+		return true;
+	}
 }

@@ -58,13 +58,15 @@ public class TypeChecking extends DefaultVisitor {
 	// class Asignacion { Expresion izq; Expresion der; }
 	public Object visit(Asignacion node, Object param) {
 		super.visit(node, param);
-		predicado(node.getIzq().getTipo().getClass() == node.getDer().getTipo().getClass(), "Asignación: valores de distinto tipo", node);
 		predicado(node.getIzq().isModificable() == true, "Asignación: valor de la izquierda no modificable",
 				node.getIzq());
-		predicado(
-				node.getIzq().getTipo().getClass() != TipoStruct.class
-						&& node.getIzq().getTipo().getClass() != TipoArray.class,
-				"Asignación: El valor de la izquierda debe ser simple", node.getIzq());
+		if (node.getIzq().getTipo() != null && node.getDer().getTipo() != null) {
+			predicado(node.getIzq().getTipo().getClass() == node.getDer().getTipo().getClass(), "Asignación: valores de distinto tipo", node);
+			predicado(
+					node.getIzq().getTipo().getClass() != TipoStruct.class
+							&& node.getIzq().getTipo().getClass() != TipoArray.class,
+					"Asignación: El valor de la izquierda debe ser simple", node.getIzq());
+		}
 		return null;
 	}
 
@@ -97,7 +99,7 @@ public class TypeChecking extends DefaultVisitor {
 	// class Println { Expresion expresion; }
 	public Object visit(Println node, Object param) {
 		super.visit(node, param);
-		if(node.getExpresion() != null)
+		if(node.getExpresion() != null && node.getExpresion().getTipo() != null)
 			predicado(
 					node.getExpresion().getTipo().getClass() != TipoStruct.class
 							&& node.getExpresion().getTipo().getClass() != TipoArray.class,
@@ -109,10 +111,12 @@ public class TypeChecking extends DefaultVisitor {
 	public Object visit(Read node, Object param) {
 		super.visit(node, param);
 		predicado(node.getExpresion().isModificable(), "Read: debe ser modificable", node);
-		predicado(
-				node.getExpresion().getTipo().getClass() != TipoStruct.class
-						&& node.getExpresion().getTipo().getClass() != TipoArray.class,
-				"Read: debe ser tipo simple", node);
+		if (node.getExpresion().getTipo() != null) {
+			predicado(
+					node.getExpresion().getTipo().getClass() != TipoStruct.class
+							&& node.getExpresion().getTipo().getClass() != TipoArray.class,
+					"Read: debe ser tipo simple", node);
+		}
 		return null;
 	}
 
@@ -157,19 +161,19 @@ public class TypeChecking extends DefaultVisitor {
 	// class AccesoStruct { Expresion expresion; String ident; }
 	public Object visit(AccesoStruct node, Object param) {
 		super.visit(node, param);
-		predicado(node.getExpresion().getTipo().getClass() == TipoStruct.class, "AccesoStruct: debe ser tipo struct",
-				node);
-		if(node.getExpresion().getTipo().getClass()==TipoStruct.class) {
-			DefStruct struct = ((TipoStruct)node.getExpresion().getTipo()).getDefinicion();
-			for(CuerpoStruct c: struct.getCuerpostruct()) {
-				if(c.getIdent().equals(node.getIdent())) {
-					node.setTipo(c.getTipo());
-					break;
+		if (node.getExpresion().getTipo() != null) {
+			predicado(node.getExpresion().getTipo().getClass() == TipoStruct.class, "AccesoStruct: debe ser tipo struct",
+					node);
+			if(node.getExpresion().getTipo().getClass()==TipoStruct.class) {
+				DefStruct struct = ((TipoStruct)node.getExpresion().getTipo()).getDefinicion();
+				for(CuerpoStruct c: struct.getCuerpostruct()) {
+					if(c.getIdent().equals(node.getIdent())) {
+						node.setTipo(c.getTipo());
+						break;
+					}
 				}
+				predicado(node.getTipo() != null, "AccesoStruct: Campo '" + node.getIdent() +"' no existe", node);
 			}
-		}
-		else {
-			node.setTipo(node.getExpresion().getTipo());
 		}
 		node.setModificable(true);
 		return null;
@@ -179,23 +183,25 @@ public class TypeChecking extends DefaultVisitor {
 	public Object visit(AccesoArray node, Object param) {
 		super.visit(node, param);
 		predicado(node.getPosicion().getTipo().getClass() == TipoEntero.class, "AccesoArray: debe ser índice entero",
-				node);		
-		if(node.getPosicion().getTipo().getClass()==TipoEntero.class) {
-			predicado(node.getIdent().getTipo().getClass() == TipoArray.class, "AccesoArray: debe ser tipo array", node);
-			if(node.getIdent().getTipo().getClass()==TipoArray.class) {
-				node.setTipo(((TipoArray)node.getIdent().getTipo()).getTipo());
-				node.setModificable(true);
+				node);
+		if (node.getIdent().getTipo() != null && node.getPosicion().getTipo() != null) {
+			if(node.getPosicion().getTipo().getClass()==TipoEntero.class) {
+				predicado(node.getIdent().getTipo().getClass() == TipoArray.class, "AccesoArray: debe ser tipo array", node);
+				if(node.getIdent().getTipo().getClass()==TipoArray.class) {
+					node.setTipo(((TipoArray)node.getIdent().getTipo()).getTipo());
+				}
 			}
 		}
+		node.setModificable(true);
 		return null;
 	}
 
 	// class Variable { String ident; }
 	public Object visit(Variable node, Object param) {
-//		super.visit(node, param);	
+		super.visit(node, param);	
  		node.setTipo(node.getDefinicion().getTipo());
 		node.setModificable(true);
-		if (node.getTipo().getClass() == TipoStruct.class) {
+		if (param != null && node.getTipo().getClass() == TipoStruct.class) {
 			TipoStruct struct = (TipoStruct) node.getTipo();
 			DefStruct defS = struct.getDefinicion();
 			boolean i = false;
@@ -211,7 +217,7 @@ public class TypeChecking extends DefaultVisitor {
 					break;
 				}
 			}
-			predicado(i==false, "TipoStruct: El campo al que se hace referencia no existe en la estructura " + defS.getIdent(),
+			predicado(i, "TipoStruct: El campo al que se hace referencia no existe en la estructura " + defS.getIdent(),
 					node);
 		}
 
@@ -295,7 +301,7 @@ public class TypeChecking extends DefaultVisitor {
 	public Object visit(ExpresionLogica node, Object param) {
 		super.visit(node, param);
 		predicado(node.getIzquierda().getTipo().getClass() == TipoEntero.class, "ExpresionLogica: deben ser tipo entero",
-				node.getStart()); // char?
+				node.getStart()); 
 		predicado(node.getIzquierda().getTipo().getClass() == node.getDerecha().getTipo().getClass(),
 				"ExpresionLogica: Deben ser del mismo tipo", node.getStart());
 		node.setTipo(new TipoEntero());

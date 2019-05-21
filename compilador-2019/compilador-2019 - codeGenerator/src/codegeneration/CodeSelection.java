@@ -64,8 +64,8 @@ public class CodeSelection extends DefaultVisitor {
 		}
 		out(node.getIdent() + ":");
 		
-		super.visit(node, param);
 		out("enter " + entercount);
+		super.visit(node, param);
 		if (node.getTipo().getClass() == TipoVoid.class) {
 			out("ret " + 0 + "," + entercount + "," + paramscount);
 		}
@@ -129,7 +129,8 @@ public class CodeSelection extends DefaultVisitor {
 		for (DefVariable def : node.funcionEnLaQueEstoy.getParametrosFuncion()) {
 			parametrosSize += def.getTipo().getSize();
 		}
-		out("ret " + returnSize + "," + localesSize + "," + parametrosSize);
+		if(node.getExpresion() != null)
+			out("ret " + returnSize + "," + localesSize + "," + parametrosSize);
 		return null;
 	}
 
@@ -158,14 +159,17 @@ public class CodeSelection extends DefaultVisitor {
 	public Object visit(SentenciaCondicional node, Object param) {
 		numEtiquetaIf++;
 		int numIf = numEtiquetaIf;
-		out("sentenciaIf" + numIf + ":");
 		node.getCondicion().accept(this, CodeFunction.VALUE);
 		out("jz sentenciaElse" + numIf);
 		visitChildren(node.getCuerpoIf(), param);
-		out("jmp finSentenciaIf" + numIf);
+		if (node.getCuerpoIf().isEmpty() || !node.getCuerpoIf().get(node.getCuerpoIf().size()-1).isFinFuncion()) {
+			out("jmp finSentenciaIf" + numIf);
+		}
 		out("sentenciaElse" + numIf + ":");
 		visitChildren(node.getCuerpoElse(), param);
-		out("finSentenciaIf" + numIf + ":");
+		if (node.getCuerpoIf().isEmpty() || !node.getCuerpoIf().get(node.getCuerpoIf().size()-1).isFinFuncion()) {
+			out("finSentenciaIf" + numIf + ":");
+		}
 		return null;
 	}
 
@@ -247,7 +251,10 @@ public class CodeSelection extends DefaultVisitor {
 	// class LiteralChar { String value; }
 	public Object visit(LiteralChar node, Object param) {
 		assert (param == CodeFunction.VALUE);
-		out("pushb " + (int)node.getValue().charAt(0));
+//		out("pushb " + (int)node.getValue().charAt(1));
+		String valor = node.getValue().split("'")[1];
+		if(valor.equalsIgnoreCase("\\n")) out("pushb 10");  // Caso especial
+		else out("pushb " + valor.hashCode());
 		return null;
 	}
 

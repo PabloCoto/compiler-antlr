@@ -15,5 +15,10 @@ public abstract class AbstractSentencia extends AbstractAST implements Sentencia
 	public void setFuncionEnLaQueEstoy(DefFuncion funcionEnLaQueEstoy) {
 		this.funcionEnLaQueEstoy = funcionEnLaQueEstoy;
 	}
+	
+	@Override
+	public boolean isFinFuncion() {
+		return false;
+	}
 
 }

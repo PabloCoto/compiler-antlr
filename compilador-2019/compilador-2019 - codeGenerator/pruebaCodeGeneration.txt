@@ -1,9 +1,20 @@
-var a:int;
-var b:float;
+struct Persona {
+	inicial:char;
+	sueldo:float;  
+};
 
+struct Pablo {
+	persona:Persona;
+};
+
+var empresa:[4] Persona;
+
+var pablo : Pablo;
 
 main() {
-	a = 1111;
+	empresa[0].sueldo = 2.0;
 
-	print a;		// 1111
+	pablo.persona.sueldo = empresa[0].sueldo;
+	
+	print pablo.persona.sueldo;
 }

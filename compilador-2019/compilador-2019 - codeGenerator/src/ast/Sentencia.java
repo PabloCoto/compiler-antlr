@@ -8,5 +8,6 @@ public interface Sentencia extends AST {
 
 	public DefFuncion getFuncionEnLaQueEstoy();
 	public void setFuncionEnLaQueEstoy(DefFuncion funcionEnLaQueEstoy);
+	public boolean isFinFuncion();
 
 }

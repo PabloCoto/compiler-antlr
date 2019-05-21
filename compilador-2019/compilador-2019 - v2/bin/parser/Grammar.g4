@@ -18,6 +18,8 @@ definiciones returns [List<Definicion> list = new ArrayList<Definicion>()]
 	: (definicion{$list.add($definicion.ast);})*
 	;
 
+
+
 /* Define el contenido del programa: variables, estructuras o funciones */	
 definicion returns[Definicion ast]
 	: defVariable {$ast = $defVariable.ast;}

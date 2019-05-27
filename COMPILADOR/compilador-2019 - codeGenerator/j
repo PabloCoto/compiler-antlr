@@ -1,0 +1,14 @@
+struct pair{ 
+  integer :int;
+  character: char;
+  pepe:pepe;
+  
+};
+
+struct pepe{
+	pepeJuan:pair;
+};
+
+main(){
+ 
+}

@@ -995,10 +995,10 @@ public class GrammarParser extends Parser {
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(192);
-				match(T__15);
+				((SentenciaContext)_localctx).et = match(T__15);
 				setState(193);
 				match(T__2);
-				 ((SentenciaContext)_localctx).ast =  new Println(null); 
+				 ((SentenciaContext)_localctx).ast =  new Println(null);  _localctx.ast.setPositions(((SentenciaContext)_localctx).et);
 				}
 				break;
 			case 8:

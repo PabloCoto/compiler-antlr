@@ -179,9 +179,9 @@ public class CodeSelection extends DefaultVisitor {
 		out("jz expresionTres" + numTernario);
 		node.getEx2().accept(this, CodeFunction.VALUE);
 		out("jmp finTernario" + numTernario);
-		out("expresionTres" + numTernario);
+		out("expresionTres" + numTernario + ":");
 		node.getEx3().accept(this, CodeFunction.VALUE);
-		out("finTernario" + numTernario);
+		out("finTernario" + numTernario + ":");
 		return null;
 	}
 	

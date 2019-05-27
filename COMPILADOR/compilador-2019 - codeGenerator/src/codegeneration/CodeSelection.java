@@ -107,8 +107,10 @@ public class CodeSelection extends DefaultVisitor {
 //	class Println { Expresion expresion; }
 	public Object visit(Println node, Object param) {
 		out("#line " + node.getEnd().getLine());
-		node.getExpresion().accept(this, CodeFunction.VALUE);
-		out("out", node.getExpresion().getTipo());
+		if (node.getExpresion() != null) {
+			node.getExpresion().accept(this, CodeFunction.VALUE);
+			out("out", node.getExpresion().getTipo());
+		}
 		out("pushb 10");
 		out("outb");
 		return null;
@@ -185,13 +187,13 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class AccesoStruct { Expresion expresion;  String ident; }
 	public Object visit(AccesoStruct node, Object param) {
-		super.visit(node, CodeFunction.ADDRESS);
+		super.visit(node, CodeFunction.ADDRESS); //direccion de s
 		if (node.getExpresion().getTipo().getClass() == TipoStruct.class) {
 			DefStruct defstruct = ((TipoStruct) node.getExpresion().getTipo()).getDefinicion();
 			List<CuerpoStruct> campos = defstruct.getCuerpostruct();
 			for (CuerpoStruct campo : campos) {
 				if (campo.getIdent().equals(node.getIdent())) {
-					out("push " + campo.getAddress());
+					out("push " + campo.getAddress()); //desplazamiento de c
 					out("add");
 					break;
 				}
@@ -205,9 +207,9 @@ public class CodeSelection extends DefaultVisitor {
 
 //	class AccesoArray { Expresion ident;  Expresion posicion; }
 	public Object visit(AccesoArray node, Object param) {
-		node.getIdent().accept(this, CodeFunction.ADDRESS);
-		node.getPosicion().accept(this, CodeFunction.VALUE);
-		out("push " + ((TipoArray)node.getIdent().getTipo()).getTipo().getSize());
+		node.getIdent().accept(this, CodeFunction.ADDRESS); //dir(v)
+		node.getPosicion().accept(this, CodeFunction.VALUE); //i
+		out("push " + ((TipoArray)node.getIdent().getTipo()).getTipo().getSize()); //tam(v[0])
 		out("mul");
 		out("add");
 		if (param == CodeFunction.VALUE) {

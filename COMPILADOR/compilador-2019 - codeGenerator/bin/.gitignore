@@ -1,1 +1,3 @@
-/codegeneration/
+/parser/
+/semantic/
+/visitor/

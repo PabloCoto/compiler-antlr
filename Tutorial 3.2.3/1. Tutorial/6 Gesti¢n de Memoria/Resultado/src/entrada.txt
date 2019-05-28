@@ -1,7 +1,0 @@
-DATA
-	float f1;
-	int i1;
-	float f2;
-	int i2;
-CODE
-	

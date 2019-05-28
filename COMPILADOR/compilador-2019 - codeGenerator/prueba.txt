@@ -72,6 +72,7 @@ main(){
  
   inicializa(); 
   i = 0;
+  
   while (i < 8) { 	// Salen 8 primeros de Fibonacci (de 1 a 34)
     print '(';
     print i + 1;
@@ -109,5 +110,6 @@ main(){
     }
     i = i + 1;
   }
+
 }
 

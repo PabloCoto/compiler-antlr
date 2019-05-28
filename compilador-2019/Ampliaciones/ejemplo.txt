@@ -1,9 +1,0 @@
-main(){
-	var a:int;
-	var b:int;
-	
-	b = 5;
-	
-	print  0 ? 1 : 2;
-	
-}

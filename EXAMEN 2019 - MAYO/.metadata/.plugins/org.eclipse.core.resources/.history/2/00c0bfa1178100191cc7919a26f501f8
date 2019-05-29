@@ -1,0 +1,234 @@
+#source "ejemplo.txt"
+call main
+halt
+#GLOBAL a:int
+#GLOBAL b:char
+#GLOBAL c:5 * float
+#GLOBAL h:3 * 2 * float
+#TYPE Direccion:{
+
+	portal:int
+
+	codigoPostal:int
+
+}
+#GLOBAL d1:Direccion
+#GLOBAL d2:Direccion
+#TYPE Persona:{
+
+	edad:int
+
+	direccion:Direccion
+
+}
+#GLOBAL f:6 * Persona
+#TYPE Empresa:{
+
+	cif:9 * char
+
+	empleados:10 * Persona
+
+}
+#GLOBAL microsoft:Empresa
+#FUNC dobleSuma
+#PARAM a:int
+#PARAM b:int
+#RET int
+#LOCAL local:int
+dobleSuma:
+enter 2
+push BP
+push -2
+add
+push BP
+push 6
+add
+loadi
+push BP
+push 4
+add
+loadi
+addi
+push 2
+muli
+storei
+#line 57
+push BP
+push -2
+add
+loadi
+push 2
+muli
+ret 2,2,4
+#FUNC escribeEdad
+#PARAM num:int
+#RET VOID
+escribeEdad:
+enter 0
+#line 61
+pusha 91
+push 9
+add
+push BP
+push 4
+add
+loadi
+push 6
+mul
+add
+push 0
+add
+loadi
+outi
+pushb 32
+outb
+ret 0,0,2
+#GLOBAL z:int
+#FUNC main
+#RET VOID
+#LOCAL local:int
+#LOCAL pepe:Persona
+#LOCAL v:10 * int
+main:
+enter 28
+push BP
+push -8
+add
+push 0
+add
+push 20
+storei
+push BP
+push -8
+add
+push 2
+add
+push 2
+add
+ini
+storei
+push BP
+push -2
+add
+push 0
+storei
+bucleWhile1:
+push BP
+push -2
+add
+loadi
+push 10
+lti
+jz finBucleWhile1
+push BP
+push -28
+add
+push BP
+push -2
+add
+loadi
+push 2
+mul
+add
+pushf 2.0
+pusha 23
+push 0
+push 8
+mul
+add
+push 3
+push 4
+mul
+add
+loadf
+addf
+f2i
+push BP
+push -2
+add
+loadi
+call dobleSuma
+storei
+push BP
+push -2
+add
+push BP
+push -2
+add
+loadi
+push 1
+addi
+storei
+jmp bucleWhile1
+finBucleWhile1:
+pusha 0
+loadi
+push 2
+gei
+push BP
+push -2
+add
+loadi
+push 5
+lti
+and
+jz sentenciaElse1
+pusha 0
+loadi
+push BP
+push -2
+add
+loadi
+addi
+call escribeEdad
+#line 82
+sentenciaElse1:
+pusha 2
+pushb 82
+storeb
+pusha 160
+loadi
+push 2
+nei
+jz sentenciaElse2
+pusha 160
+loadi
+push 2
+eqi
+jz sentenciaElse3
+push BP
+push -28
+add
+push BP
+push -2
+add
+loadi
+push 2
+mul
+add
+loadi
+call escribeEdad
+jmp finSentenciaIf3
+sentenciaElse3:
+push BP
+push -28
+add
+push BP
+push -2
+add
+loadi
+push 1
+addi
+push 2
+mul
+add
+loadi
+call escribeEdad
+finSentenciaIf3:
+jmp finSentenciaIf2
+sentenciaElse2:
+finSentenciaIf2:
+#line 96
+pushb 10
+outb
+ret 0,28,0

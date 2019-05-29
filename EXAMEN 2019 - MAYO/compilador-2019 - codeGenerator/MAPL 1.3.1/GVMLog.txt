@@ -1,0 +1,14 @@
+[21/05/2019 17:52:26] (RunUserAction) System.ObjectDisposedException: No se puede obtener acceso al objeto eliminado.
+Nombre del objeto: 'InputBox'.
+   en System.Windows.Forms.Control.CreateHandle()
+   en System.Windows.Forms.Form.CreateHandle()
+   en System.Windows.Forms.Control.get_Handle()
+   en System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   en System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   en System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   en GVM.Views.InputBox.SelectAndShow()
+   en GVM.Views.ViewESManager.ReadInt()
+   en GVM.Instructions.InStateChanges.DoChange(State state)
+   en GVM.StateModule.VirtualMachine.Run()
+   en GVM.Actions.RunAction.<DoExec>b__1_0()
+   en GVM.Actions.TraceExceptionsThread.TryCode(ThreadStart code)

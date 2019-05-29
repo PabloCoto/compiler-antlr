@@ -1,0 +1,11 @@
+struct Pareja { 
+  entero:int;
+  caracter:char;
+};
+
+main(){
+  var pareja:Pareja;
+  pareja.entero = 0;
+  pareja.entero.c = 0;
+}
+

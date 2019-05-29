@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css">
+.value { font-weight: bold; }
+.dots { color: #bebdbd; }
+.type { color: #BBBBBB; }
+.pos { color: #CCCCCC; }
+.sourceText { color: #BBBBBB; }
+.posText {
+	color: #BBBBBB;
+	text-decoration: underline; font-weight: bold;
+}
+.null {
+	color: #FF0000;
+	font-weight: bold;
+	font-style: italic;
+}
+</style>
+</head>
+
+<body><pre>
+[ASTPrinter] -------------------------------- line:col  line:col
+
+<span class="dots"></span>Programa &rarr;                                                  <span class="pos">1:1  57:24   </span><span class="sourceText"></span><span class="posText">main() {</span><span class="sourceText"> ... </span><span class="posText">intVector1 = intVector2</span><span class="sourceText">;</span>
+<span class="dots">.  </span>definicion  <span class="type">List&lt;Definicion&gt;</span> = 
+<span class="dots">.  .  </span>DefFuncion &rarr;                                          <span class="pos">1:1  57:24   </span><span class="sourceText"></span><span class="posText">main() {</span><span class="sourceText"> ... </span><span class="posText">intVector1 = intVector2</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  </span>"<span class="value">main</span>"  
+<span class="dots">.  .  |  </span>parametrosFuncion  <span class="type">List&lt;DefVariable&gt;</span> = 
+<span class="dots">.  .  |  </span><span class="value">TipoVoid</span> &rarr;                                         <span class="pos"><span class="null">null</span>  <span class="null">null</span>   </span>
+<span class="dots">.  .  |  </span>definiciones  <span class="type">List&lt;DefVariable&gt;</span> = 
+<span class="dots">.  .  |  .  </span>DefVariable &rarr;                                   <span class="pos">3:13  3:19   </span><span class="sourceText">var hello:[</span><span class="posText">5] char</span><span class="sourceText">; </span>
+<span class="dots">.  .  |  .  |  </span>"<span class="value">hello</span>"  
+<span class="dots">.  .  |  .  |  </span>TipoArray &rarr;                                  <span class="pos">3:13  3:19   </span><span class="sourceText">var hello:[</span><span class="posText">5] char</span><span class="sourceText">; </span>
+<span class="dots">.  .  |  .  |  .  </span>"<span class="value">5</span>"  
+<span class="dots">.  .  |  .  |  .  </span><span class="value">TipoChar</span> &rarr;                                <span class="pos">3:16  3:19   </span><span class="sourceText">var hello:[5] </span><span class="posText">char</span><span class="sourceText">; </span>
+<span class="dots">.  .  |  .  |  </span><span class="value">0</span>  <span class="type">int</span>
+<span class="dots">.  .  |  .  </span>DefVariable &rarr;                                   <span class="pos">4:13  4:19   </span><span class="sourceText">var world:[</span><span class="posText">5] char</span><span class="sourceText">; </span>
+<span class="dots">.  .  |  .  |  </span>"<span class="value">world</span>"  
+<span class="dots">.  .  |  .  |  </span>TipoArray &rarr;                                  <span class="pos">4:13  4:19   </span><span class="sourceText">var world:[</span><span class="posText">5] char</span><span class="sourceText">; </span>
+<span class="dots">.  .  |  .  |  .  </span>"<span class="value">5</span>"  
+<span class="dots">.  .  |  .  |  .  </span><span class="value">TipoChar</span> &rarr;                                <span class="pos">4:16  4:19   </span><span class="sourceText">var world:[5] </span><span class="posText">char</span><span class="sourceText">; </span>
+<span class="dots">.  .  |  .  |  </span><span class="value">0</span>  <span class="type">int</span>
+<span class="dots">.  .  |  .  </span>DefVariable &rarr;                                   <span class="pos">6:11  6:18   </span><span class="sourceText">var hw: [</span><span class="posText">12] char</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"<span class="value">hw</span>"  
+<span class="dots">.  .  |  .  |  </span>TipoArray &rarr;                                  <span class="pos">6:11  6:18   </span><span class="sourceText">var hw: [</span><span class="posText">12] char</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  .  </span>"<span class="value">12</span>"  
+<span class="dots">.  .  |  .  |  .  </span><span class="value">TipoChar</span> &rarr;                                <span class="pos">6:15  6:18   </span><span class="sourceText">var hw: [12] </span><span class="posText">char</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="value">0</span>  <span class="type">int</span>
+<span class="dots">.  .  |  .  </span>DefVariable &rarr;                                   <span class="pos">8:19  8:25   </span><span class="sourceText">var intVector1: [</span><span class="posText">10] int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"<span class="value">intVector1</span>"  
+<span class="dots">.  .  |  .  |  </span>TipoArray &rarr;                                  <span class="pos">8:19  8:25   </span><span class="sourceText">var intVector1: [</span><span class="posText">10] int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  .  </span>"<span class="value">10</span>"  
+<span class="dots">.  .  |  .  |  .  </span><span class="value">TipoEntero</span> &rarr;                              <span class="pos">8:23  8:25   </span><span class="sourceText">var intVector1: [10] </span><span class="posText">int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="value">0</span>  <span class="type">int</span>
+<span class="dots">.  .  |  .  </span>DefVariable &rarr;                                   <span class="pos">9:19  9:25   </span><span class="sourceText">var intVector2: [</span><span class="posText">10] int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"<span class="value">intVector2</span>"  
+<span class="dots">.  .  |  .  |  </span>TipoArray &rarr;                                  <span class="pos">9:19  9:25   </span><span class="sourceText">var intVector2: [</span><span class="posText">10] int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  .  </span>"<span class="value">10</span>"  
+<span class="dots">.  .  |  .  |  .  </span><span class="value">TipoEntero</span> &rarr;                              <span class="pos">9:23  9:25   </span><span class="sourceText">var intVector2: [10] </span><span class="posText">int</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="value">0</span>  <span class="type">int</span>
+<span class="dots">.  .  |  </span>sentencias  <span class="type">List&lt;Sentencia&gt;</span> = 
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">11:2  11:15  </span><span class="sourceText"></span><span class="posText">hello[0] = 'h'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">11:2  11:8   </span><span class="sourceText"></span><span class="posText">hello[0</span><span class="sourceText">] = 'h';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hello"  <span class="type">Variable.ident</span>                   <span class="pos">11:2  11:6   </span><span class="sourceText"></span><span class="posText">hello</span><span class="sourceText">[0] = 'h';</span>
+<span class="dots">.  .  |  .  |  .  </span>"0"  <span class="type">LiteralInt.value</span>                     <span class="pos">11:8  11:8   </span><span class="sourceText">hello[</span><span class="posText">0</span><span class="sourceText">] = 'h';</span>
+<span class="dots">.  .  |  .  |  </span>"'h'"  <span class="type">LiteralChar.value</span>                     <span class="pos">11:13  11:15 </span><span class="sourceText">hello[0] = </span><span class="posText">'h'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">12:2  12:15  </span><span class="sourceText"></span><span class="posText">hello[1] = 'e'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">12:2  12:8   </span><span class="sourceText"></span><span class="posText">hello[1</span><span class="sourceText">] = 'e';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hello"  <span class="type">Variable.ident</span>                   <span class="pos">12:2  12:6   </span><span class="sourceText"></span><span class="posText">hello</span><span class="sourceText">[1] = 'e';</span>
+<span class="dots">.  .  |  .  |  .  </span>"1"  <span class="type">LiteralInt.value</span>                     <span class="pos">12:8  12:8   </span><span class="sourceText">hello[</span><span class="posText">1</span><span class="sourceText">] = 'e';</span>
+<span class="dots">.  .  |  .  |  </span>"'e'"  <span class="type">LiteralChar.value</span>                     <span class="pos">12:13  12:15 </span><span class="sourceText">hello[1] = </span><span class="posText">'e'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">13:2  13:15  </span><span class="sourceText"></span><span class="posText">hello[2] = 'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">13:2  13:8   </span><span class="sourceText"></span><span class="posText">hello[2</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hello"  <span class="type">Variable.ident</span>                   <span class="pos">13:2  13:6   </span><span class="sourceText"></span><span class="posText">hello</span><span class="sourceText">[2] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"2"  <span class="type">LiteralInt.value</span>                     <span class="pos">13:8  13:8   </span><span class="sourceText">hello[</span><span class="posText">2</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  </span>"'l'"  <span class="type">LiteralChar.value</span>                     <span class="pos">13:13  13:15 </span><span class="sourceText">hello[2] = </span><span class="posText">'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">14:2  14:15  </span><span class="sourceText"></span><span class="posText">hello[3] = 'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">14:2  14:8   </span><span class="sourceText"></span><span class="posText">hello[3</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hello"  <span class="type">Variable.ident</span>                   <span class="pos">14:2  14:6   </span><span class="sourceText"></span><span class="posText">hello</span><span class="sourceText">[3] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"3"  <span class="type">LiteralInt.value</span>                     <span class="pos">14:8  14:8   </span><span class="sourceText">hello[</span><span class="posText">3</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  </span>"'l'"  <span class="type">LiteralChar.value</span>                     <span class="pos">14:13  14:15 </span><span class="sourceText">hello[3] = </span><span class="posText">'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">15:2  15:15  </span><span class="sourceText"></span><span class="posText">hello[4] = 'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">15:2  15:8   </span><span class="sourceText"></span><span class="posText">hello[4</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hello"  <span class="type">Variable.ident</span>                   <span class="pos">15:2  15:6   </span><span class="sourceText"></span><span class="posText">hello</span><span class="sourceText">[4] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"4"  <span class="type">LiteralInt.value</span>                     <span class="pos">15:8  15:8   </span><span class="sourceText">hello[</span><span class="posText">4</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  </span>"'o'"  <span class="type">LiteralChar.value</span>                     <span class="pos">15:13  15:15 </span><span class="sourceText">hello[4] = </span><span class="posText">'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">17:2  17:15  </span><span class="sourceText"></span><span class="posText">world[0] = 'w'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">17:2  17:8   </span><span class="sourceText"></span><span class="posText">world[0</span><span class="sourceText">] = 'w';</span>
+<span class="dots">.  .  |  .  |  .  </span>"world"  <span class="type">Variable.ident</span>                   <span class="pos">17:2  17:6   </span><span class="sourceText"></span><span class="posText">world</span><span class="sourceText">[0] = 'w';</span>
+<span class="dots">.  .  |  .  |  .  </span>"0"  <span class="type">LiteralInt.value</span>                     <span class="pos">17:8  17:8   </span><span class="sourceText">world[</span><span class="posText">0</span><span class="sourceText">] = 'w';</span>
+<span class="dots">.  .  |  .  |  </span>"'w'"  <span class="type">LiteralChar.value</span>                     <span class="pos">17:13  17:15 </span><span class="sourceText">world[0] = </span><span class="posText">'w'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">18:2  18:15  </span><span class="sourceText"></span><span class="posText">world[1] = 'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">18:2  18:8   </span><span class="sourceText"></span><span class="posText">world[1</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"world"  <span class="type">Variable.ident</span>                   <span class="pos">18:2  18:6   </span><span class="sourceText"></span><span class="posText">world</span><span class="sourceText">[1] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"1"  <span class="type">LiteralInt.value</span>                     <span class="pos">18:8  18:8   </span><span class="sourceText">world[</span><span class="posText">1</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  </span>"'o'"  <span class="type">LiteralChar.value</span>                     <span class="pos">18:13  18:15 </span><span class="sourceText">world[1] = </span><span class="posText">'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">19:2  19:15  </span><span class="sourceText"></span><span class="posText">world[2] = 'r'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">19:2  19:8   </span><span class="sourceText"></span><span class="posText">world[2</span><span class="sourceText">] = 'r';</span>
+<span class="dots">.  .  |  .  |  .  </span>"world"  <span class="type">Variable.ident</span>                   <span class="pos">19:2  19:6   </span><span class="sourceText"></span><span class="posText">world</span><span class="sourceText">[2] = 'r';</span>
+<span class="dots">.  .  |  .  |  .  </span>"2"  <span class="type">LiteralInt.value</span>                     <span class="pos">19:8  19:8   </span><span class="sourceText">world[</span><span class="posText">2</span><span class="sourceText">] = 'r';</span>
+<span class="dots">.  .  |  .  |  </span>"'r'"  <span class="type">LiteralChar.value</span>                     <span class="pos">19:13  19:15 </span><span class="sourceText">world[2] = </span><span class="posText">'r'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">20:2  20:15  </span><span class="sourceText"></span><span class="posText">world[3] = 'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">20:2  20:8   </span><span class="sourceText"></span><span class="posText">world[3</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"world"  <span class="type">Variable.ident</span>                   <span class="pos">20:2  20:6   </span><span class="sourceText"></span><span class="posText">world</span><span class="sourceText">[3] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"3"  <span class="type">LiteralInt.value</span>                     <span class="pos">20:8  20:8   </span><span class="sourceText">world[</span><span class="posText">3</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  </span>"'l'"  <span class="type">LiteralChar.value</span>                     <span class="pos">20:13  20:15 </span><span class="sourceText">world[3] = </span><span class="posText">'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">21:2  21:15  </span><span class="sourceText"></span><span class="posText">world[4] = 'd'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">21:2  21:8   </span><span class="sourceText"></span><span class="posText">world[4</span><span class="sourceText">] = 'd';</span>
+<span class="dots">.  .  |  .  |  .  </span>"world"  <span class="type">Variable.ident</span>                   <span class="pos">21:2  21:6   </span><span class="sourceText"></span><span class="posText">world</span><span class="sourceText">[4] = 'd';</span>
+<span class="dots">.  .  |  .  |  .  </span>"4"  <span class="type">LiteralInt.value</span>                     <span class="pos">21:8  21:8   </span><span class="sourceText">world[</span><span class="posText">4</span><span class="sourceText">] = 'd';</span>
+<span class="dots">.  .  |  .  |  </span>"'d'"  <span class="type">LiteralChar.value</span>                     <span class="pos">21:13  21:15 </span><span class="sourceText">world[4] = </span><span class="posText">'d'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">23:2  23:12  </span><span class="sourceText"></span><span class="posText">hw[0] = 'H'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">23:2  23:5   </span><span class="sourceText"></span><span class="posText">hw[0</span><span class="sourceText">] = 'H';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">23:2  23:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[0] = 'H';</span>
+<span class="dots">.  .  |  .  |  .  </span>"0"  <span class="type">LiteralInt.value</span>                     <span class="pos">23:5  23:5   </span><span class="sourceText">hw[</span><span class="posText">0</span><span class="sourceText">] = 'H';</span>
+<span class="dots">.  .  |  .  |  </span>"'H'"  <span class="type">LiteralChar.value</span>                     <span class="pos">23:10  23:12 </span><span class="sourceText">hw[0] = </span><span class="posText">'H'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">24:2  24:12  </span><span class="sourceText"></span><span class="posText">hw[1] = 'e'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">24:2  24:5   </span><span class="sourceText"></span><span class="posText">hw[1</span><span class="sourceText">] = 'e';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">24:2  24:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[1] = 'e';</span>
+<span class="dots">.  .  |  .  |  .  </span>"1"  <span class="type">LiteralInt.value</span>                     <span class="pos">24:5  24:5   </span><span class="sourceText">hw[</span><span class="posText">1</span><span class="sourceText">] = 'e';</span>
+<span class="dots">.  .  |  .  |  </span>"'e'"  <span class="type">LiteralChar.value</span>                     <span class="pos">24:10  24:12 </span><span class="sourceText">hw[1] = </span><span class="posText">'e'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">25:2  25:12  </span><span class="sourceText"></span><span class="posText">hw[2] = 'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">25:2  25:5   </span><span class="sourceText"></span><span class="posText">hw[2</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">25:2  25:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[2] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"2"  <span class="type">LiteralInt.value</span>                     <span class="pos">25:5  25:5   </span><span class="sourceText">hw[</span><span class="posText">2</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  </span>"'l'"  <span class="type">LiteralChar.value</span>                     <span class="pos">25:10  25:12 </span><span class="sourceText">hw[2] = </span><span class="posText">'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">26:2  26:12  </span><span class="sourceText"></span><span class="posText">hw[3] = 'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">26:2  26:5   </span><span class="sourceText"></span><span class="posText">hw[3</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">26:2  26:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[3] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"3"  <span class="type">LiteralInt.value</span>                     <span class="pos">26:5  26:5   </span><span class="sourceText">hw[</span><span class="posText">3</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  </span>"'l'"  <span class="type">LiteralChar.value</span>                     <span class="pos">26:10  26:12 </span><span class="sourceText">hw[3] = </span><span class="posText">'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">27:2  27:12  </span><span class="sourceText"></span><span class="posText">hw[4] = 'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">27:2  27:5   </span><span class="sourceText"></span><span class="posText">hw[4</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">27:2  27:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[4] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"4"  <span class="type">LiteralInt.value</span>                     <span class="pos">27:5  27:5   </span><span class="sourceText">hw[</span><span class="posText">4</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  </span>"'o'"  <span class="type">LiteralChar.value</span>                     <span class="pos">27:10  27:12 </span><span class="sourceText">hw[4] = </span><span class="posText">'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">28:2  28:12  </span><span class="sourceText"></span><span class="posText">hw[5] = ' '</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">28:2  28:5   </span><span class="sourceText"></span><span class="posText">hw[5</span><span class="sourceText">] = ' ';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">28:2  28:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[5] = ' ';</span>
+<span class="dots">.  .  |  .  |  .  </span>"5"  <span class="type">LiteralInt.value</span>                     <span class="pos">28:5  28:5   </span><span class="sourceText">hw[</span><span class="posText">5</span><span class="sourceText">] = ' ';</span>
+<span class="dots">.  .  |  .  |  </span>"' '"  <span class="type">LiteralChar.value</span>                     <span class="pos">28:10  28:12 </span><span class="sourceText">hw[5] = </span><span class="posText">' '</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">29:2  29:12  </span><span class="sourceText"></span><span class="posText">hw[6] = 'w'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">29:2  29:5   </span><span class="sourceText"></span><span class="posText">hw[6</span><span class="sourceText">] = 'w';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">29:2  29:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[6] = 'w';</span>
+<span class="dots">.  .  |  .  |  .  </span>"6"  <span class="type">LiteralInt.value</span>                     <span class="pos">29:5  29:5   </span><span class="sourceText">hw[</span><span class="posText">6</span><span class="sourceText">] = 'w';</span>
+<span class="dots">.  .  |  .  |  </span>"'w'"  <span class="type">LiteralChar.value</span>                     <span class="pos">29:10  29:12 </span><span class="sourceText">hw[6] = </span><span class="posText">'w'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">30:2  30:12  </span><span class="sourceText"></span><span class="posText">hw[7] = 'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">30:2  30:5   </span><span class="sourceText"></span><span class="posText">hw[7</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">30:2  30:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[7] = 'o';</span>
+<span class="dots">.  .  |  .  |  .  </span>"7"  <span class="type">LiteralInt.value</span>                     <span class="pos">30:5  30:5   </span><span class="sourceText">hw[</span><span class="posText">7</span><span class="sourceText">] = 'o';</span>
+<span class="dots">.  .  |  .  |  </span>"'o'"  <span class="type">LiteralChar.value</span>                     <span class="pos">30:10  30:12 </span><span class="sourceText">hw[7] = </span><span class="posText">'o'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">31:2  31:12  </span><span class="sourceText"></span><span class="posText">hw[8] = 'r'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">31:2  31:5   </span><span class="sourceText"></span><span class="posText">hw[8</span><span class="sourceText">] = 'r';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">31:2  31:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[8] = 'r';</span>
+<span class="dots">.  .  |  .  |  .  </span>"8"  <span class="type">LiteralInt.value</span>                     <span class="pos">31:5  31:5   </span><span class="sourceText">hw[</span><span class="posText">8</span><span class="sourceText">] = 'r';</span>
+<span class="dots">.  .  |  .  |  </span>"'r'"  <span class="type">LiteralChar.value</span>                     <span class="pos">31:10  31:12 </span><span class="sourceText">hw[8] = </span><span class="posText">'r'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">32:2  32:12  </span><span class="sourceText"></span><span class="posText">hw[9] = 'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">32:2  32:5   </span><span class="sourceText"></span><span class="posText">hw[9</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">32:2  32:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[9] = 'l';</span>
+<span class="dots">.  .  |  .  |  .  </span>"9"  <span class="type">LiteralInt.value</span>                     <span class="pos">32:5  32:5   </span><span class="sourceText">hw[</span><span class="posText">9</span><span class="sourceText">] = 'l';</span>
+<span class="dots">.  .  |  .  |  </span>"'l'"  <span class="type">LiteralChar.value</span>                     <span class="pos">32:10  32:12 </span><span class="sourceText">hw[9] = </span><span class="posText">'l'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">33:2  33:13  </span><span class="sourceText"></span><span class="posText">hw[10] = 'd'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">33:2  33:6   </span><span class="sourceText"></span><span class="posText">hw[10</span><span class="sourceText">] = 'd';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">33:2  33:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[10] = 'd';</span>
+<span class="dots">.  .  |  .  |  .  </span>"10"  <span class="type">LiteralInt.value</span>                    <span class="pos">33:5  33:6   </span><span class="sourceText">hw[</span><span class="posText">10</span><span class="sourceText">] = 'd';</span>
+<span class="dots">.  .  |  .  |  </span>"'d'"  <span class="type">LiteralChar.value</span>                     <span class="pos">33:11  33:13 </span><span class="sourceText">hw[10] = </span><span class="posText">'d'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">34:2  34:13  </span><span class="sourceText"></span><span class="posText">hw[11] = '!'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>AccesoArray &rarr;                                <span class="pos">34:2  34:6   </span><span class="sourceText"></span><span class="posText">hw[11</span><span class="sourceText">] = '!';</span>
+<span class="dots">.  .  |  .  |  .  </span>"hw"  <span class="type">Variable.ident</span>                      <span class="pos">34:2  34:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">[11] = '!';</span>
+<span class="dots">.  .  |  .  |  .  </span>"11"  <span class="type">LiteralInt.value</span>                    <span class="pos">34:5  34:6   </span><span class="sourceText">hw[</span><span class="posText">11</span><span class="sourceText">] = '!';</span>
+<span class="dots">.  .  |  .  |  </span>"'!'"  <span class="type">LiteralChar.value</span>                     <span class="pos">34:11  34:13 </span><span class="sourceText">hw[11] = </span><span class="posText">'!'</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Print &rarr;                                         <span class="pos">36:8  36:12  </span><span class="sourceText">print(</span><span class="posText">hello</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  |  </span>"hello"  <span class="type">Variable.ident</span>                      <span class="pos">36:8  36:12  </span><span class="sourceText">print(</span><span class="posText">hello</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  </span>Println &rarr;                                       <span class="pos">38:2  38:8   </span><span class="sourceText"></span><span class="posText">println</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="null">null</span>  expresion:<span class="type">Expresion</span>
+<span class="dots">.  .  |  .  </span>Print &rarr;                                         <span class="pos">40:8  40:12  </span><span class="sourceText">print(</span><span class="posText">world</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  |  </span>"world"  <span class="type">Variable.ident</span>                      <span class="pos">40:8  40:12  </span><span class="sourceText">print(</span><span class="posText">world</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  </span>Println &rarr;                                       <span class="pos">42:2  42:8   </span><span class="sourceText"></span><span class="posText">println</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="null">null</span>  expresion:<span class="type">Expresion</span>
+<span class="dots">.  .  |  .  </span>Print &rarr;                                         <span class="pos">44:8  44:9   </span><span class="sourceText">print(</span><span class="posText">hw</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  |  </span>"hw"  <span class="type">Variable.ident</span>                         <span class="pos">44:8  44:9   </span><span class="sourceText">print(</span><span class="posText">hw</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  </span>Println &rarr;                                       <span class="pos">46:2  46:8   </span><span class="sourceText"></span><span class="posText">println</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="null">null</span>  expresion:<span class="type">Expresion</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">48:2  48:13  </span><span class="sourceText"></span><span class="posText">hello =world</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"hello"  <span class="type">Variable.ident</span>                      <span class="pos">48:2  48:6   </span><span class="sourceText"></span><span class="posText">hello</span><span class="sourceText"> =world;</span>
+<span class="dots">.  .  |  .  |  </span>"world"  <span class="type">Variable.ident</span>                      <span class="pos">48:9  48:13  </span><span class="sourceText">hello =</span><span class="posText">world</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Print &rarr;                                         <span class="pos">49:8  49:12  </span><span class="sourceText">print(</span><span class="posText">hello</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  |  </span>"hello"  <span class="type">Variable.ident</span>                      <span class="pos">49:8  49:12  </span><span class="sourceText">print(</span><span class="posText">hello</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  </span>Println &rarr;                                       <span class="pos">51:2  51:8   </span><span class="sourceText"></span><span class="posText">println</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span><span class="null">null</span>  expresion:<span class="type">Expresion</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">53:2  53:11  </span><span class="sourceText"></span><span class="posText">world = hw</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"world"  <span class="type">Variable.ident</span>                      <span class="pos">53:2  53:6   </span><span class="sourceText"></span><span class="posText">world</span><span class="sourceText"> = hw;</span>
+<span class="dots">.  .  |  .  |  </span>"hw"  <span class="type">Variable.ident</span>                         <span class="pos">53:10  53:11 </span><span class="sourceText">world = </span><span class="posText">hw</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Print &rarr;                                         <span class="pos">54:8  54:12  </span><span class="sourceText">print(</span><span class="posText">world</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  |  </span>"world"  <span class="type">Variable.ident</span>                      <span class="pos">54:8  54:12  </span><span class="sourceText">print(</span><span class="posText">world</span><span class="sourceText">);</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">56:2  56:9   </span><span class="sourceText"></span><span class="posText">hw=hello</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"hw"  <span class="type">Variable.ident</span>                         <span class="pos">56:2  56:3   </span><span class="sourceText"></span><span class="posText">hw</span><span class="sourceText">=hello;</span>
+<span class="dots">.  .  |  .  |  </span>"hello"  <span class="type">Variable.ident</span>                      <span class="pos">56:5  56:9   </span><span class="sourceText">hw=</span><span class="posText">hello</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  </span>Asignacion &rarr;                                    <span class="pos">57:2  57:24  </span><span class="sourceText"></span><span class="posText">intVector1 = intVector2</span><span class="sourceText">;</span>
+<span class="dots">.  .  |  .  |  </span>"intVector1"  <span class="type">Variable.ident</span>                 <span class="pos">57:2  57:11  </span><span class="sourceText"></span><span class="posText">intVector1</span><span class="sourceText"> = intVector2;</span>
+<span class="dots">.  .  |  .  |  </span>"intVector2"  <span class="type">Variable.ident</span>                 <span class="pos">57:15  57:24 </span><span class="sourceText">intVector1 = </span><span class="posText">intVector2</span><span class="sourceText">;</span>
+
+[ASTPrinter] --------------------------------
+</pre>
+</body>
+</html>

@@ -1,0 +1,572 @@
+#source "examen2.txt"
+call main
+halt
+#FUNC main
+#RET VOID
+#LOCAL hello:5 * char
+#LOCAL world:5 * char
+#LOCAL hw:12 * char
+#LOCAL intVector1:10 * int
+#LOCAL intVector2:10 * int
+main:
+enter 62
+push BP
+push -5
+add
+push 0
+push 1
+mul
+add
+pushb 104
+storeb
+push BP
+push -5
+add
+push 1
+push 1
+mul
+add
+pushb 101
+storeb
+push BP
+push -5
+add
+push 2
+push 1
+mul
+add
+pushb 108
+storeb
+push BP
+push -5
+add
+push 3
+push 1
+mul
+add
+pushb 108
+storeb
+push BP
+push -5
+add
+push 4
+push 1
+mul
+add
+pushb 111
+storeb
+push BP
+push -10
+add
+push 0
+push 1
+mul
+add
+pushb 119
+storeb
+push BP
+push -10
+add
+push 1
+push 1
+mul
+add
+pushb 111
+storeb
+push BP
+push -10
+add
+push 2
+push 1
+mul
+add
+pushb 114
+storeb
+push BP
+push -10
+add
+push 3
+push 1
+mul
+add
+pushb 108
+storeb
+push BP
+push -10
+add
+push 4
+push 1
+mul
+add
+pushb 100
+storeb
+push BP
+push -22
+add
+push 0
+push 1
+mul
+add
+pushb 72
+storeb
+push BP
+push -22
+add
+push 1
+push 1
+mul
+add
+pushb 101
+storeb
+push BP
+push -22
+add
+push 2
+push 1
+mul
+add
+pushb 108
+storeb
+push BP
+push -22
+add
+push 3
+push 1
+mul
+add
+pushb 108
+storeb
+push BP
+push -22
+add
+push 4
+push 1
+mul
+add
+pushb 111
+storeb
+push BP
+push -22
+add
+push 5
+push 1
+mul
+add
+pushb 32
+storeb
+push BP
+push -22
+add
+push 6
+push 1
+mul
+add
+pushb 119
+storeb
+push BP
+push -22
+add
+push 7
+push 1
+mul
+add
+pushb 111
+storeb
+push BP
+push -22
+add
+push 8
+push 1
+mul
+add
+pushb 114
+storeb
+push BP
+push -22
+add
+push 9
+push 1
+mul
+add
+pushb 108
+storeb
+push BP
+push -22
+add
+push 10
+push 1
+mul
+add
+pushb 100
+storeb
+push BP
+push -22
+add
+push 11
+push 1
+mul
+add
+pushb 33
+storeb
+#line 36
+push BP
+push -5
+add
+push 0
+add
+loadb
+outb
+push BP
+push -5
+add
+push 1
+add
+loadb
+outb
+push BP
+push -5
+add
+push 2
+add
+loadb
+outb
+push BP
+push -5
+add
+push 3
+add
+loadb
+outb
+push BP
+push -5
+add
+push 4
+add
+loadb
+outb
+#line 38
+pushb 10
+outb
+#line 40
+push BP
+push -10
+add
+push 0
+add
+loadb
+outb
+push BP
+push -10
+add
+push 1
+add
+loadb
+outb
+push BP
+push -10
+add
+push 2
+add
+loadb
+outb
+push BP
+push -10
+add
+push 3
+add
+loadb
+outb
+push BP
+push -10
+add
+push 4
+add
+loadb
+outb
+#line 42
+pushb 10
+outb
+#line 44
+push BP
+push -22
+add
+push 0
+add
+loadb
+outb
+push BP
+push -22
+add
+push 1
+add
+loadb
+outb
+push BP
+push -22
+add
+push 2
+add
+loadb
+outb
+push BP
+push -22
+add
+push 3
+add
+loadb
+outb
+push BP
+push -22
+add
+push 4
+add
+loadb
+outb
+push BP
+push -22
+add
+push 5
+add
+loadb
+outb
+push BP
+push -22
+add
+push 6
+add
+loadb
+outb
+push BP
+push -22
+add
+push 7
+add
+loadb
+outb
+push BP
+push -22
+add
+push 8
+add
+loadb
+outb
+push BP
+push -22
+add
+push 9
+add
+loadb
+outb
+push BP
+push -22
+add
+push 10
+add
+loadb
+outb
+push BP
+push -22
+add
+push 11
+add
+loadb
+outb
+#line 46
+pushb 10
+outb
+push BP
+push -5
+add
+push 0
+add
+push BP
+push -10
+add
+push 0
+add
+loadb
+storeb
+push BP
+push -5
+add
+push 1
+add
+push BP
+push -10
+add
+push 1
+add
+loadb
+storeb
+push BP
+push -5
+add
+push 2
+add
+push BP
+push -10
+add
+push 2
+add
+loadb
+storeb
+push BP
+push -5
+add
+push 3
+add
+push BP
+push -10
+add
+push 3
+add
+loadb
+storeb
+push BP
+push -5
+add
+push 4
+add
+push BP
+push -10
+add
+push 4
+add
+loadb
+storeb
+#line 49
+push BP
+push -5
+add
+push 0
+add
+loadb
+outb
+push BP
+push -5
+add
+push 1
+add
+loadb
+outb
+push BP
+push -5
+add
+push 2
+add
+loadb
+outb
+push BP
+push -5
+add
+push 3
+add
+loadb
+outb
+push BP
+push -5
+add
+push 4
+add
+loadb
+outb
+#line 51
+pushb 10
+outb
+push BP
+push -10
+add
+push 0
+add
+push BP
+push -22
+add
+push 0
+add
+loadb
+storeb
+push BP
+push -10
+add
+push 1
+add
+push BP
+push -22
+add
+push 1
+add
+loadb
+storeb
+push BP
+push -10
+add
+push 2
+add
+push BP
+push -22
+add
+push 2
+add
+loadb
+storeb
+push BP
+push -10
+add
+push 3
+add
+push BP
+push -22
+add
+push 3
+add
+loadb
+storeb
+push BP
+push -10
+add
+push 4
+add
+push BP
+push -22
+add
+push 4
+add
+loadb
+storeb
+#line 54
+push BP
+push -10
+add
+push 0
+add
+loadb
+outb
+push BP
+push -10
+add
+push 1
+add
+loadb
+outb
+push BP
+push -10
+add
+push 2
+add
+loadb
+outb
+push BP
+push -10
+add
+push 3
+add
+loadb
+outb
+push BP
+push -10
+add
+push 4
+add
+loadb
+outb
+ret 0,62,0

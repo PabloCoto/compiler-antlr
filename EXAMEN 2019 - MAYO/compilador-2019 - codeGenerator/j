@@ -1,0 +1,45 @@
+main(){
+ 
+	var values:[4]int;
+	var i:int;
+	var alltrue:int;
+	var notallfalse:int;
+	var anyfalse:int;
+	var anytrue:int;
+	
+	values[0]=1;
+	values[1]=2;
+	values[2]=0;
+	values[3]=0;
+	
+	i = 0;
+	alltrue = 1;
+	notallfalse = 0;
+	anyfalse = 0;
+	anytrue = 0;
+	
+	while (i<4){
+		alltrue = values[i];
+		notallfalse = values[i] || notallfalse;
+		i = i +1;
+	}
+	
+	print alltrue;
+	print !notallfalse;
+	print anyfalse;
+	print anytrue;
+	println ;
+	
+	alltrue = 1;
+	i = 0;
+	while(alltrue == values[i]){
+		print i;
+		i= i+1;
+	}
+	
+	alltrue = 1;
+	i = 0;
+	println ;
+	print i;
+	print alltrue;
+}
